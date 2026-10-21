@@ -1,0 +1,1471 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Shuru Goal Investing</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Rubik:wght@900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,800&family=Caveat:wght@700&display=swap">
+<style>
+/* Layout: a phone-sized app on the left, a demo desk on the right (controls, reminder preview, guide). Stacks on narrow screens. */
+/* Colour: lilac by day, aubergine by night. Mint = money for soon, mango = the goal, violet = money for later, coral = the consistency badge. Text on those four is always dark plum. */
+:root{--page:#E9E0FA;--bg:#F4EFFF;--surface:#FFFFFF;--surface-2:#FFFFFF;--line:#E2D9F5;--ink:#2A1B3D;--ink-2:#6B5E7E;--link:#5B3FD9;--soft:#ECE6FF;--dip:#8A4B6E;--dip-soft:#F6E6F0;--frame:#2A1B3D;--scrim:rgba(42,27,61,.45);--c-ahead:#1FA98E;--c-level:#E09400;--c-behind:#A8408C;--c-worth:#7B5CFF;--c-in:#B08A1E;--mesh:radial-gradient(circle at 10% -4%,rgba(123,92,255,.16),transparent 42%),radial-gradient(circle at 108% 22%,rgba(46,196,166,.16),transparent 40%);--hero-bg:#FFB627;--btn-glow:0 4px 0 rgba(42,27,61,.14);--card-glow:none;--t1:#D7F5EE;--t1b:#A6E4D6;--t2:#FFEEC4;--t2b:#FFD77F;--t3:#E5DEFF;--t3b:#C6B8FF;--t4:#FFE0E0;--t4b:#FFB9B9;--mint:#2EC4A6;--mango:#FFB627;--violet:#7B5CFF;--coral:#FF6B6B;--on-color:#2A1B3D;--teal:var(--mango);--teal-soft:var(--soft);--on-p:var(--on-color);--accent:var(--mint);--accent-ink:var(--on-color);--p-track:rgba(42,27,61,.16);
+  --display:"Bagel Fat One","Rubik","DM Sans",system-ui,sans-serif;
+  --body:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
+:root[data-theme="dark"]{--page:#0F0819;--bg:#170E27;--surface:#2A1C44;--surface-2:#2A1C44;--line:#4B3A73;--ink:#F4EFFF;--ink-2:#B7A9CC;--link:#BBAAFF;--soft:#35265A;--dip:#E3B3CF;--dip-soft:#3A2442;--frame:#0F0A18;--scrim:rgba(15,10,24,.6);--c-ahead:#1E9C84;--c-level:#C4821A;--c-behind:#B9529B;--c-worth:#8A70F5;--c-in:#BD7C16;--mesh:radial-gradient(circle at 8% -6%,rgba(123,92,255,.55),transparent 46%),radial-gradient(circle at 112% 20%,rgba(46,196,166,.30),transparent 42%),radial-gradient(circle at 40% 108%,rgba(255,107,107,.26),transparent 45%);--hero-bg:linear-gradient(135deg,#FFB627 0%,#FF8F5E 100%);--btn-glow:0 8px 26px rgba(255,182,39,.34);--card-glow:0 10px 28px rgba(8,4,16,.35);--t1:rgba(46,196,166,.18);--t1b:rgba(46,196,166,.6);--t2:rgba(255,182,39,.18);--t2b:rgba(255,182,39,.6);--t3:rgba(123,92,255,.26);--t3b:rgba(150,125,255,.75);--t4:rgba(255,107,107,.18);--t4b:rgba(255,107,107,.6);color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.45;padding-inline:16px;padding-block:20px 32px}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+.wrap{max-width:980px;margin-inline:auto;display:flex;flex-direction:column;gap:18px}
+.top{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px}
+.brand{font-family:var(--display);font-weight:700;font-size:28px;letter-spacing:-.02em}
+.brand i{font-style:normal;color:var(--teal)}
+.tagline{color:var(--ink-2);min-width:0}
+.stage{display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start}
+.phone{flex:0 0 auto;width:min(100%,396px);height:780px;background:var(--surface);border:9px solid var(--frame);border-radius:38px;display:flex;flex-direction:column;overflow:hidden;position:relative}
+.screen{flex:1;overflow-y:auto;padding:22px 18px 20px;display:flex;flex-direction:column;gap:14px;min-height:0}
+.tabs{display:flex;border-top:1px solid var(--line);background:var(--surface)}
+.tabs button{flex:1;background:none;border:0;padding:12px 4px 14px;font-weight:600;color:var(--ink-2);border-top:3px solid transparent}
+.tabs button[aria-current="page"]{color:var(--teal);border-top-color:var(--teal)}
+.panel{flex:1 1 300px;min-width:0;display:flex;flex-direction:column;gap:16px}
+.panel h2{font-family:var(--display);font-size:17px;margin:0 0 8px;font-weight:700}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.row{display:flex;flex-wrap:wrap;gap:8px}
+.muted{color:var(--ink-2)}
+.small{font-size:13px}
+h1{font-family:var(--display);font-weight:700;font-size:27px;line-height:1.15;letter-spacing:-.01em;margin:0;text-wrap:balance}
+h3{font-family:var(--display);font-weight:700;font-size:17px;margin:0;text-wrap:balance}
+p{margin:0}
+.step{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.btn{background:var(--teal);color:var(--on-p);border:0;border-radius:999px;padding:14px 18px;font-weight:700;width:100%;text-align:center;transition:transform .12s}
+.btn:active{transform:scale(.98)}
+.btn.alt{background:var(--surface);color:var(--ink);border:1.5px solid var(--line)}
+.btn.teal{background:var(--teal);color:var(--on-p)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.sm{width:auto;padding:9px 16px}
+.link{background:none;border:0;padding:4px 0;color:var(--teal);font-weight:600;text-decoration:underline;text-underline-offset:3px;text-align:left}
+.back{background:none;border:0;padding:0;color:var(--ink-2);font-weight:600;align-self:flex-start}
+.opt{display:block;width:100%;text-align:left;background:var(--surface-2);border:2px solid transparent;border-radius:18px;padding:14px;font-weight:700}
+.opt span{display:block;font-weight:400;color:var(--ink-2);font-size:13.5px;margin-top:2px}
+.opt[aria-pressed="true"]{border-color:var(--teal);background:var(--teal-soft)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:var(--surface-2);border:2px solid transparent;border-radius:999px;padding:8px 14px;font-weight:600;font-variant-numeric:tabular-nums}
+.chip[aria-pressed="true"]{border-color:var(--teal);background:var(--teal-soft)}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-weight:600}
+.field input,.field select{background:var(--surface);border:1.5px solid var(--line);border-radius:10px;padding:11px 12px;width:100%}
+.card{background:var(--surface-2);border-radius:20px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.card.pop{background:var(--accent);color:var(--accent-ink)}
+.card.pop .muted,.card.pop .step{color:inherit;opacity:.8}
+.card.line{background:var(--surface);border:1px solid var(--line)}
+.card.calm{background:var(--teal-soft)}
+.card.dip{background:var(--dip-soft)}
+.plan{font-family:var(--display);font-size:21px;line-height:1.25;font-weight:700;text-wrap:balance}
+.bar{height:16px;background:var(--line);border-radius:999px;overflow:hidden}
+.bar b{display:block;height:100%;background:var(--teal);border-radius:999px;min-width:6px;transition:width .7s cubic-bezier(.2,.8,.2,1)}
+.big{font-family:var(--display);font-weight:700;font-size:46px;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.kv{display:flex;justify-content:space-between;gap:12px;font-variant-numeric:tabular-nums}
+.kv b{font-weight:700}
+.tag{display:inline-block;font-size:12px;font-weight:700;border-radius:999px;padding:3px 10px;background:var(--surface);border:1px solid var(--line)}
+.term{background:none;border:0;padding:0;font-weight:600;color:inherit;border-bottom:2px dotted var(--teal)}
+.sheetwrap{position:absolute;inset:0;background:var(--scrim);display:flex;align-items:flex-end;z-index:5}
+.sheet{background:var(--surface);border-radius:22px 22px 0 0;padding:20px 18px 24px;width:100%;display:flex;flex-direction:column;gap:10px}
+.eg{background:var(--surface-2);border-radius:10px;padding:10px 12px}
+.ms{display:flex;flex-wrap:wrap;gap:6px}
+.dots{display:inline-flex;gap:4px;vertical-align:middle}
+.dots i{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.dots i.on{background:var(--ink)}
+.lesson{flex:1;display:flex;flex-direction:column;gap:16px}
+.pips{display:flex;gap:5px}
+.pips i{flex:1;height:4px;border-radius:2px;background:var(--line)}
+.pips i.on{background:var(--accent)}
+.lcard{background:var(--surface-2);border-radius:20px;padding:18px;display:flex;flex-direction:column;gap:12px;animation:rise .45s cubic-bezier(.2,.8,.2,1) both}
+.lcard svg{width:100%;height:auto;display:block}
+.qopt{display:block;width:100%;text-align:left;background:var(--surface-2);border:2px solid transparent;border-radius:12px;padding:12px 14px;font-weight:600}
+.qopt.right{border-color:var(--teal);background:var(--teal-soft)}
+.qopt.chosen{border-color:var(--ink-2)}
+.spacer{flex:1}
+.note{font-size:12.5px;color:var(--ink-2)}
+.notif{background:var(--surface-2);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:2px}
+.notif b{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+ol.guide{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
+.stat{font-variant-numeric:tabular-nums}
+.foot{color:var(--ink-2);font-size:12.5px;max-width:70ch}
+.hero{background:var(--teal);color:var(--on-p);border-radius:26px;padding:18px;display:flex;flex-direction:column;gap:12px;animation:rise .4s cubic-bezier(.2,.8,.2,1) both}
+.hero .bar{background:var(--p-track)}
+.hero .bar b{background:var(--accent)}
+.hero .tag{background:transparent;border-color:currentColor;color:inherit}
+.hero .plan{font-size:23px}
+.who{display:flex;align-items:center;gap:10px;min-width:0}
+.gicon{flex:0 0 auto;font-size:24px;width:46px;height:46px;border-radius:15px;background:var(--p-track);display:grid;place-items:center}
+.kv.end{align-items:flex-end}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat-t{background:var(--surface-2);border-radius:18px;padding:12px 14px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.stat-t b{font-family:var(--display);font-size:21px;font-variant-numeric:tabular-nums}
+.inside{display:flex;flex-wrap:wrap;gap:6px}
+.inside span{font-size:12.5px;font-weight:600;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:4px 10px}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tile{background:var(--teal-soft);border:2px solid transparent;border-radius:20px;padding:14px;text-align:left;font-weight:700;display:flex;flex-direction:column;gap:10px;min-height:104px;transition:transform .12s}
+.tile:nth-child(2),.tile:nth-child(3){background:var(--surface-2)}
+.tile:active{transform:scale(.97)}
+.tile .e{font-size:30px;line-height:1}
+.pick{display:flex;flex-direction:column;gap:6px}
+.pick .kv{display:flex;margin:0}
+.pick .kv b{color:var(--ink);font-size:15.5px}
+.pick>span>b{color:var(--ink)}
+.pick .tag{display:inline-block;font-size:12px;font-weight:700;color:var(--ink);margin:0}
+.pick .dots{display:inline-flex;margin:0}
+.pick .inside{display:flex;margin-top:4px}
+.pick .inside span{display:inline-block;margin:0;font-weight:600;color:var(--ink);font-size:12.5px}
+.skins .chip{border-color:var(--line)}
+.skins .chip[aria-pressed="true"]{border-color:var(--teal)}
+@media (prefers-reduced-motion: reduce){.hero{animation:none}.btn,.tile{transition:none}}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:none}}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes grow{from{transform:scaleY(0)}to{transform:none}}
+.a-pop{animation:pop .4s cubic-bezier(.2,.9,.3,1.3) both;transform-box:fill-box;transform-origin:center}
+.a-draw{stroke-dasharray:600;stroke-dashoffset:600;animation:draw 1.6s ease-out .15s forwards}
+.a-grow{animation:grow .7s cubic-bezier(.2,.8,.2,1) both;transform-box:fill-box;transform-origin:bottom}
+@media (prefers-reduced-motion: reduce){.a-pop,.a-grow,.lcard{animation:none}.a-draw{animation:none;stroke-dashoffset:0}.bar b{transition:none}}
+@media (max-width:560px){.phone{height:720px;border-width:6px;border-radius:28px;margin-inline:auto}.brand{font-size:24px}}
+
+/* ---- theme pass ---- */
+body{background:var(--page);font-size:16px;line-height:1.5}
+:focus-visible{outline-color:var(--link)}
+.brand,.logo{font-family:var(--display);font-weight:600}
+.brand i,.logo i{font-style:normal;color:var(--violet)}
+.phone{background:var(--bg)}
+.appbar{display:flex;justify-content:space-between;align-items:center;padding:12px 16px 2px}
+.logo{font-size:21px}
+.tgl{width:44px;height:44px;border-radius:50%;background:var(--surface);border:2px solid var(--line);display:grid;place-items:center;color:var(--ink);padding:0}
+.tgl svg{width:22px;height:22px}
+.screen{padding-top:10px;gap:16px}
+h1{font-weight:600;font-size:28px}
+h3{font-weight:600;font-size:18px}
+.big,.plan,.stat-t b,.panel h2{font-weight:600}
+.card,.opt,.chip,.stat-t,.lcard,.qopt,.notif,.eg,.box,.tile,.tile:nth-child(2),.tile:nth-child(3){background:var(--surface);border:2px solid var(--line)}
+.card.line{border:2px solid var(--line)}
+.card.calm{background:var(--soft)}
+.card.dip{background:var(--dip-soft)}
+.card.pop{background:var(--mint);color:var(--on-color);border-color:var(--mint)}
+.opt[aria-pressed="true"],.chip[aria-pressed="true"]{border-color:var(--violet);background:var(--soft)}
+.btn{min-height:52px;font-weight:800}
+.btn.alt{border:2px solid var(--line)}
+.btn.sm{min-height:44px}
+.chip{min-height:44px}
+.tabs{border-top:2px solid var(--line)}
+.tabs button{padding:14px 4px 16px;font-weight:800}
+.tabs button[aria-current="page"]{color:var(--link);border-top-color:var(--mango)}
+.link{color:var(--link);font-weight:800;min-height:44px}
+.term{border-bottom-color:var(--violet)}
+.bar{background:var(--line)}
+.bar b{background:var(--mango)}
+.hero{border:0}
+.hero .bar b{background:var(--on-color)}
+.pips i.on{background:var(--mango)}
+.qopt.right{border-color:var(--mint);background:var(--soft)}
+.field input,.field select{border:2px solid var(--line);min-height:50px;background:var(--surface)}
+.sheetwrap{background:var(--scrim)}
+.sheet{border-top:2px solid var(--line)}
+.tag,.inside span{border-width:2px}
+.deskbar{display:flex;flex-direction:column;gap:12px}
+.deskhead{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:flex-start;justify-content:space-between}
+.deskhead>div:first-child{flex:1 1 320px;min-width:0}
+.deskbar h2{font-family:var(--display);font-size:19px;margin:0 0 4px}
+.jumps{display:flex;flex-wrap:wrap;gap:8px}
+.jumps .grp{flex:1 1 100%;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);margin-top:4px}
+.jumps .chip{min-height:40px;padding:6px 14px;font-size:14px}
+.phone{background-color:var(--bg);background-image:var(--mesh)}
+.tabs{background:var(--surface)}
+.hero{background:var(--hero-bg)}
+.card,.opt,.stat-t,.lcard{box-shadow:var(--card-glow)}
+.btn{box-shadow:var(--btn-glow)}
+.btn.alt,.btn:disabled{box-shadow:none}
+.tile:nth-child(1){background:var(--t1);border-color:var(--t1b)}
+.tile:nth-child(2){background:var(--t2);border-color:var(--t2b)}
+.tile:nth-child(3){background:var(--t3);border-color:var(--t3b)}
+.tile:nth-child(4){background:var(--t4);border-color:var(--t4b)}
+.tile.wide{grid-column:1 / -1;min-height:0;flex-direction:row;align-items:center;background:var(--surface);border-color:var(--line)}
+.tile{font-size:15.5px}
+.tile .e{font-size:34px}
+.stats .stat-t:nth-child(1){background:var(--t1);border-color:var(--t1b)}
+.stats .stat-t:nth-child(2){background:var(--t3);border-color:var(--t3b)}
+.stat-t .muted{color:var(--ink)}
+.opt .e{display:inline;font-size:22px;margin:0 6px 0 0;vertical-align:-2px}
+.steps{display:flex;gap:6px}
+.steps i{flex:1;height:8px;border-radius:999px;background:var(--line)}
+.steps i.on{background:var(--violet)}
+.hello{flex:1;display:flex;flex-direction:column;gap:18px;justify-content:center}
+.hello h1{font-size:34px}
+.wave{font-size:54px;line-height:1;animation:rise .5s cubic-bezier(.2,.8,.2,1) both}
+.perks{display:flex;flex-direction:column;gap:10px}
+.perk{display:flex;align-items:center;gap:12px;border-radius:18px;padding:12px 14px;border:2px solid var(--line);background:var(--surface);font-weight:700;animation:rise .5s cubic-bezier(.2,.8,.2,1) both}
+.perk:nth-child(1){background:var(--t1);border-color:var(--t1b)}
+.perk:nth-child(2){background:var(--t2);border-color:var(--t2b);animation-delay:.08s}
+.perk:nth-child(3){background:var(--t3);border-color:var(--t3b);animation-delay:.16s}
+.perk span{font-size:26px}
+@media (prefers-reduced-motion: reduce){.wave,.perk{animation:none}}
+.hero .kv{align-items:center}
+.hero .tag{white-space:nowrap;padding:5px 12px;font-size:12.5px}
+.hero h3{min-width:0;overflow-wrap:anywhere}
+.cta{position:sticky;bottom:-20px;margin:0 -18px -20px;padding:14px 18px 20px;background:linear-gradient(to bottom,transparent,var(--bg) 38%);display:flex;flex-direction:column;gap:8px;z-index:2}
+.rows{display:flex;flex-direction:column;gap:10px}
+.rows div{display:flex;flex-direction:column}
+.rows span{font-size:13px;color:var(--ink-2)}
+.rows b{font-size:17px}
+.hero .link{color:inherit;min-height:0;padding:0;align-self:flex-start;font-size:14px}
+.dotgrid{display:grid;grid-template-columns:repeat(10,1fr);gap:6px}
+.pd{display:block;aspect-ratio:1;border-radius:50%;border:2px solid var(--line);background:transparent;padding:0;min-width:0}
+.pd.fell{background:var(--c-worth);border-color:var(--c-worth)}
+.pd.ahead{background:var(--c-ahead);border-color:var(--c-ahead)}
+.pd.level{background:var(--c-level);border-color:var(--c-level)}
+.pd.behind{background:var(--c-behind);border-color:var(--c-behind)}
+button.pd{transition:transform .12s}
+button.pd:active{transform:scale(.85)}
+.legend{display:flex;flex-direction:column;gap:8px}
+.legend div{display:flex;align-items:center;gap:10px}
+.legend b{margin-left:auto;font-variant-numeric:tabular-nums}
+.sw{flex:0 0 auto;width:14px;height:14px;border-radius:50%;border:2px solid var(--line)}
+.sw.dash{width:18px;height:0;border-radius:0;border:0;border-top:2px dashed var(--c-in)}
+.sw.solid{width:18px;height:0;border-radius:0;border:0;border-top:3px solid var(--c-worth)}
+.warnline{font-size:13.5px;font-weight:700;border:2px dashed var(--line);border-radius:16px;padding:10px 14px}
+.rpchart{width:100%;height:auto;display:block}
+.pick3{display:flex;flex-direction:column;gap:8px}
+@media (prefers-reduced-motion: reduce){button.pd{transition:none}}
+.risks{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:5px;font-size:13.5px}
+.screen>.tag{align-self:flex-start}
+.badge{display:inline-block;background:var(--coral);color:var(--on-color);border-radius:999px;padding:6px 14px;font-weight:800;font-size:14px}
+.dot,.pick .dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin:0 6px 0 0}
+.pick{animation:rise .5s cubic-bezier(.2,.8,.2,1) both}
+@media (prefers-reduced-motion: reduce){.pick{animation:none}}
+
+/* ---- sticker pass: thick outlines, hard shadows, a jar that fills. Tilt only on home, welcome, done, learn and lessons. ---- */
+:root{--ol:#2A1B3D;--sh:#2A1B3D;--bg:#F1E8FF;--page:#E0D2FA;--line:#D6C7F2;--soft:#EEE7FF;--hand:"Caveat","DM Sans",cursive}
+:root[data-theme="dark"]{--ol:#F4EFFF;--sh:#7B5CFF;--bg:#170E27;--page:#0F0819;--line:#4B3A73;--soft:#3A2A66}
+h1,h3,.big,.plan,.brand,.logo,.panel h2,.deskbar h2,.stat-t b,.btn{font-family:var(--display);font-weight:900;font-synthesis:none;letter-spacing:.005em}
+h1{font-size:32px;line-height:1.05}
+h3{font-size:19px;line-height:1.15}
+.big{font-size:54px;line-height:.95}
+.plan,.hero .plan{font-size:25px;line-height:1.15}
+.stat-t b{font-size:24px}
+.btn{font-size:17px;border:2.5px solid var(--on-color);box-shadow:0 5px 0 var(--sh);transition:transform .08s,box-shadow .08s}
+.btn.alt{border:2.5px solid var(--ol);box-shadow:0 5px 0 var(--sh)}
+.btn:active{transform:translateY(4px);box-shadow:0 1px 0 var(--sh)}
+.btn:disabled{box-shadow:none}
+.card,.opt,.stat-t,.lcard,.qopt,.notif,.eg,.box,.tile,.tile:nth-child(2),.tile:nth-child(3),.perk,.tile.wide{border:2.5px solid var(--ol)}
+.card,.opt,.stat-t,.lcard,.box,.tile,.perk{box-shadow:4px 4px 0 var(--sh);border-radius:18px}
+.card.line{border:2.5px solid var(--ol)}
+.card.dip{border-style:dashed;box-shadow:none}
+.card.pop{border-color:var(--on-color)}
+.tile:nth-child(1),.perk:nth-child(1),.stats .stat-t:nth-child(1){border-color:var(--ol)}
+.tile:nth-child(2),.perk:nth-child(2){border-color:var(--ol)}
+.tile:nth-child(3),.perk:nth-child(3),.stats .stat-t:nth-child(2){border-color:var(--ol)}
+.tile:nth-child(4){border-color:var(--ol)}
+.opt[aria-pressed="true"]{border-color:var(--violet);background:var(--soft);box-shadow:4px 4px 0 var(--violet)}
+.opt:active,.tile:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--sh)}
+.chip{border:2.5px solid var(--ol);box-shadow:0 3px 0 var(--sh);font-weight:700;transition:transform .08s,box-shadow .08s}
+.chip:active{transform:translateY(2px);box-shadow:0 1px 0 var(--sh)}
+.chip[aria-pressed="true"]{background:var(--mint);color:var(--on-color);border-color:var(--on-color)}
+.field input,.field select{border:2.5px solid var(--ol);border-radius:14px;font-weight:700}
+.field input:focus,.field select:focus{outline:0;box-shadow:4px 4px 0 var(--mango)}
+.tgl{border:2.5px solid var(--ol);box-shadow:0 3px 0 var(--sh)}
+.tgl:active{transform:translateY(2px);box-shadow:0 1px 0 var(--sh)}
+.tabs{border-top:2.5px solid var(--ol);padding:8px 8px 10px;gap:8px}
+.tabs button{border:2.5px solid transparent;border-radius:999px;padding:9px 4px;color:var(--ink-2)}
+.tabs button[aria-current="page"]{background:var(--mango);color:var(--on-color);border-color:var(--on-color);box-shadow:0 3px 0 var(--sh)}
+.tag,.inside span{border:2px solid var(--ol)}
+.badge{border:2.5px solid var(--on-color);box-shadow:3px 3px 0 var(--sh)}
+.bar{height:18px;border:2.5px solid var(--ol);background:var(--surface)}
+.steps i{height:10px;border:2px solid var(--ol);background:var(--surface)}
+.steps i.on{background:var(--violet)}
+.pips i{height:8px;border:2px solid var(--ol);background:var(--surface)}
+.dots i{border:1.5px solid var(--ol);background:transparent;width:10px;height:10px}
+.dots i.on{background:var(--ol)}
+.sheet{border-top:2.5px solid var(--ol)}
+.warnline{border:2.5px dashed var(--ol)}
+.phone{border-color:var(--frame)}
+.hero{background:var(--surface);color:var(--ink);border:2.5px solid var(--ol);box-shadow:5px 5px 0 var(--sh);border-radius:22px;position:relative}
+.hero .tag{background:var(--mint);color:var(--on-color);border-color:var(--on-color)}
+.hero .link{color:var(--link)}
+.hero .bar b{background:var(--mango)}
+[data-screen="plan"] .hero{background:var(--mango);color:var(--on-color);border-color:var(--on-color)}
+.gicon{background:var(--soft);border:2px solid var(--ol)}
+.jarhero .bar{display:none}
+.jarrow{display:flex;align-items:center;gap:14px}
+.jartext{display:flex;flex-direction:column;gap:4px;min-width:0}
+.jar{flex:0 0 auto;width:98px;height:auto;overflow:visible}
+.jglass{fill:var(--bg)}
+.jline{fill:none;stroke:var(--ol);stroke-width:3.5;stroke-linejoin:round;stroke-linecap:round}
+.jwave{fill:var(--mango)}
+.jliq{transform:translateY(calc((1 - var(--to)) * 98px))}
+.jcoin{fill:var(--mango);stroke:var(--ol);stroke-width:2.5;opacity:0}
+.jar.drop .jliq{animation:jrise 1s cubic-bezier(.3,1.5,.5,1) .4s both}
+.jar.drop .jwave{animation:jslosh .9s ease-in-out .4s 1}
+.jar.drop .jcoin{animation:jcoin .55s cubic-bezier(.5,0,.9,.6) 1 both}
+@keyframes jrise{from{transform:translateY(calc((1 - var(--from)) * 98px))}to{transform:translateY(calc((1 - var(--to)) * 98px))}}
+@keyframes jslosh{0%,100%{transform:translateX(0)}25%{transform:translateX(-14px)}55%{transform:translateX(-3px)}80%{transform:translateX(-9px)}}
+@keyframes jcoin{0%{opacity:1;transform:translateY(-16px)}85%{opacity:1}100%{opacity:0;transform:translateY(calc((1 - var(--from)) * 98px + 14px))}}
+.hand{font-family:var(--hand);font-weight:700;font-size:21px;line-height:1;color:var(--ink-2);display:inline-block;transform:rotate(-5deg);align-self:flex-start}
+/* tilt, overlap and doodles: only where nothing needs careful reading */
+[data-screen="home"] .hero>.kv:first-child .tag,[data-screen="done"] .hero .tag{position:absolute;top:-13px;right:14px;transform:rotate(5deg);box-shadow:2px 2px 0 var(--sh)}
+[data-screen="home"] .stats .stat-t:nth-child(1){transform:rotate(-1.4deg)}
+[data-screen="home"] .stats .stat-t:nth-child(2){transform:rotate(1.2deg)}
+[data-screen="home"] .badge{transform:rotate(-2.5deg)}
+[data-screen="home"] .card.pop{transform:rotate(-.7deg)}
+[data-screen="home"] .ms .tag:nth-child(odd){transform:rotate(-3deg)}
+[data-screen="home"] .ms .tag:nth-child(even){transform:rotate(2.5deg)}
+[data-screen="welcome"] .tile:nth-child(1),[data-screen="hello"] .perk:nth-child(1){transform:rotate(-1.3deg)}
+[data-screen="welcome"] .tile:nth-child(2),[data-screen="hello"] .perk:nth-child(2){transform:rotate(1.1deg)}
+[data-screen="welcome"] .tile:nth-child(3),[data-screen="hello"] .perk:nth-child(3){transform:rotate(.9deg)}
+[data-screen="welcome"] .tile:nth-child(4){transform:rotate(-1deg)}
+[data-screen="welcome"] .tile:active{transform:translate(2px,2px) rotate(0)}
+[data-screen="learn"] .opt:nth-of-type(odd){transform:rotate(-.6deg)}
+[data-screen="learn"] .opt:nth-of-type(even){transform:rotate(.6deg)}
+[data-screen="lesson"] .lcard{transform:rotate(-.8deg)}
+[data-screen="hello"] h1::after,[data-screen="welcome"] h1::after,[data-screen="done"] h1::after,[data-screen="learn"] h1::after{content:"";display:block;width:62%;height:12px;margin-top:6px;background:var(--mango);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'%3E%3Cpath d='M2 8 Q 20 1 38 7 T 76 6 T 114 8 T 152 5 T 198 7' fill='none' stroke='black' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E") center/100% 100% no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'%3E%3Cpath d='M2 8 Q 20 1 38 7 T 76 6 T 114 8 T 152 5 T 198 7' fill='none' stroke='black' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E") center/100% 100% no-repeat}
+.wave{filter:drop-shadow(3px 3px 0 var(--sh))}
+.deskbar,.box{box-shadow:4px 4px 0 var(--sh)}
+.jumps .chip{box-shadow:0 2px 0 var(--sh)}
+@media (prefers-reduced-motion: reduce){
+  .jar.drop .jliq,.jar.drop .jwave,.jar.drop .jcoin{animation:none}
+  .btn,.chip,.tgl,.opt,.tile{transition:none}
+}
+
+/* ---- black pass: the dark theme is black, with full-colour blocks and white outlines ---- */
+:root{--t-ink:var(--ink)}
+:root[data-theme="dark"]{
+  --page:#000000;--bg:#0A0A0A;--surface:#161616;--surface-2:#161616;--line:#3D3D3D;--ink:#FAFAFA;--ink-2:#BDBDBD;--link:#FFC44D;--soft:#2A2A2A;
+  --dip:#FFB3C7;--dip-soft:#2B1A20;--frame:#000000;--scrim:rgba(0,0,0,.72);--mesh:none;--ol:#FAFAFA;--sh:#2EC4A6;--on-color:#111111;
+  --t1:#2EC4A6;--t2:#FFB627;--t3:#A995FF;--t4:#FF6B6B;--t-ink:#111111;--t1b:#FAFAFA;--t2b:#FAFAFA;--t3b:#FAFAFA;--t4b:#FAFAFA;
+  --c-ahead:#1E9C84;--c-level:#C4821A;--c-behind:#B9529B;--c-worth:#8A70F5;--c-in:#BD7C16;color-scheme:dark}
+.tile,.perk,.stats .stat-t,.stats .stat-t .muted{color:var(--t-ink)}
+.tile.wide{color:var(--ink)}
+.stats .stat-t .term{border-bottom-color:currentColor}
+.card.pop{box-shadow:4px 4px 0 var(--mango)}
+:root[data-theme="dark"] .opt[aria-pressed="true"]{border-color:var(--mango);box-shadow:4px 4px 0 var(--mango)}
+:root[data-theme="dark"] .steps i.on{background:var(--mango)}
+:root[data-theme="dark"] .gicon{background:var(--soft)}
+
+/* ---- profile ---- */
+.mehead{display:flex;gap:16px;align-items:center}
+.mehead>div{min-width:0;display:flex;flex-direction:column;gap:4px}
+.avatar{flex:0 0 auto;width:84px;height:84px;border-radius:50%;background:var(--mango);border:2.5px solid var(--on-color);box-shadow:4px 4px 0 var(--sh);display:grid;place-items:center;font-size:40px;transform:rotate(-5deg)}
+.stats .stat-t:nth-child(3){background:var(--t2)}
+.stats .stat-t:nth-child(4){background:var(--t4)}
+.rowlist{display:flex;flex-direction:column}
+.rowlist>*{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;min-height:54px;padding:12px 2px;background:none;border:0;border-bottom:2px solid var(--line);text-align:left;font-weight:700;color:var(--ink)}
+.rowlist>*:last-child{border-bottom:0}
+.rowlist .val{flex:0 0 auto;white-space:nowrap;font-weight:500;color:var(--ink-2);text-align:right}
+.rowlist button .val::after{content:" ›";font-weight:800;color:var(--ink)}
+.words{display:flex;flex-wrap:wrap;gap:8px 14px}
+[data-screen="me"] .ms .tag:nth-child(odd){transform:rotate(-3deg)}
+[data-screen="me"] .ms .tag:nth-child(even){transform:rotate(2.5deg)}
+
+/* ---- watch and play ---- */
+.vstage{background:var(--surface);border:2.5px solid var(--ol);border-radius:22px;box-shadow:5px 5px 0 var(--sh);padding:18px;display:flex;flex-direction:column;align-items:center;gap:14px;min-height:300px;justify-content:center;text-align:center}
+.vstage svg{width:100%;max-width:260px;height:auto}
+.vstage .jar{width:120px}
+.vcap{font-family:var(--display);font-weight:900;font-synthesis:none;font-size:22px;line-height:1.15;animation:rise .45s cubic-bezier(.2,.8,.2,1) both}
+.jar.rise .jliq{animation:jrise 1.1s cubic-bezier(.3,1.5,.5,1) .15s both}
+.jar.rise .jwave{animation:jslosh .9s ease-in-out .15s 1}
+.vbar{display:flex;gap:5px}
+.vbar i{flex:1;height:8px;border-radius:999px;border:2px solid var(--ol);background:var(--surface)}
+.vbar i.on{background:var(--mango)}
+.gcard{background:var(--t2);color:var(--t-ink);border:2.5px solid var(--ol);border-radius:22px;box-shadow:5px 5px 0 var(--sh);padding:26px 18px;text-align:center;font-family:var(--display);font-weight:900;font-synthesis:none;font-size:26px;line-height:1.15;animation:rise .35s cubic-bezier(.2,.8,.2,1) both}
+.gcard.yes{background:var(--t1);animation:gyes .45s cubic-bezier(.3,1.6,.5,1) both}
+.gcard.no{background:var(--t4);animation:gno .4s ease-in-out both}
+.gcard small{display:block;font-family:var(--body);font-weight:500;font-size:15px;margin-top:8px}
+@keyframes gyes{0%{transform:scale(.94)}60%{transform:scale(1.04)}100%{transform:none}}
+@keyframes gno{0%,100%{transform:none}25%{transform:rotate(-2deg)}75%{transform:rotate(2deg)}}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pick3 .btn:disabled{opacity:.5}
+.pick3 .btn:disabled:not(.alt){opacity:1}
+.gcard .term{border-bottom-color:currentColor}
+.lsec{font-family:var(--display);font-weight:900;font-synthesis:none;font-size:21px;margin-top:6px}
+@media (prefers-reduced-motion: reduce){.vcap,.gcard,.gcard.yes,.gcard.no,.jar.rise .jliq,.jar.rise .jwave{animation:none}}
+
+/* Layout override: phone on top, one-click buttons underneath */
+.stage{flex-direction:column;flex-wrap:nowrap;align-items:stretch;gap:18px}
+.stage>.phone{align-self:center}
+.stage>.panel{flex:0 0 auto}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="brand">shuru<i>.</i></div>
+    <div class="tagline">A first-investment app that starts from your goal. Clickable concept with made-up numbers.</div>
+  </header>
+
+
+  <div class="stage">
+    <section class="phone" aria-label="App prototype">
+      <div class="appbar"><span class="logo">shuru<i>.</i></span><button class="tgl" id="tgl" data-act="theme"></button></div>
+      <div class="screen" id="app"></div>
+      <nav class="tabs" id="tabs" hidden></nav>
+      <div id="sheet"></div>
+    </section>
+
+  <section class="box deskbar" aria-label="Demo controls">
+    <div class="deskhead">
+      <div>
+        <h2>See every screen</h2>
+        <p class="small muted">Most of the app appears over time: after a few weeks, or when prices fall. Tap any name to jump straight there. These controls are not part of the app.</p>
+      </div>
+      <div class="row">
+        <button class="btn sm" data-act="week" id="btnWeek">Next week</button>
+        <button class="btn sm alt" data-act="dip" id="btnDip">Trigger a market fall</button>
+        <button class="btn sm alt" data-act="reset">Start over</button>
+      </div>
+    </div>
+    <div class="jumps" id="jumps"></div>
+    <p class="small stat muted" id="status"></p>
+  </section>
+
+    <aside class="panel">
+      <div class="box">
+        <h2>Skip the sign-up</h2>
+        <p class="small muted" style="margin-bottom:10px">Load a sample person who has just made a first investment.</p>
+        <div class="row">
+          <button class="btn sm alt" data-act="persona" data-v="riya">Riya: uneven income, 14-month goal</button>
+          <button class="btn sm alt" data-act="persona" data-v="arjun">Arjun: salaried, 5-year goal</button>
+        </div>
+      </div>
+
+      <div class="box">
+        <h2>Reminder on the phone</h2>
+        <div class="notif"><b>At most one a week</b><span id="notif"></span></div>
+      </div>
+
+      <div class="box">
+        <h2>Three moments to try</h2>
+        <ol class="guide small">
+          <li><b>Before the first investment.</b> Tap "Let's go" and answer the four questions in the phone. You get one plan and a short list of places for the money, with the one that fits your goal already selected. Tap any other to switch.</li>
+          <li><b>The first few weeks.</b> Press Next week. Add money, skip a week, open a check-in. Skipping moves the goal date and nothing resets.</li>
+          <li><b>The first market fall.</b> Load Arjun, whose 5-year goal sits in the index fund. Press Trigger a market fall, then Next week two or three times. Open Pause or stop. Riya's parking fund barely moves in the same fall.</li>
+        </ol>
+      </div>
+    </aside>
+  </div>
+
+  <p class="foot">Concept prototype for a product design assignment on first-time investors aged 20 to 26. Every figure, fee and date is made up for the demo. This is not a real investment product and nothing here is investment advice. In this prototype a month is counted as four weeks.</p>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const inr = n => '₹' + Math.round(n).toLocaleString('en-IN');
+const START = new Date();
+const dateAt = w => { const d = new Date(START); d.setDate(d.getDate() + Math.round(w * 7)); return d.toLocaleDateString('en-IN', {day:'numeric', month:'short', year:'numeric'}); };
+const plural = (n, w) => n + ' ' + w + (n === 1 ? '' : 's');
+
+const GOALS = [
+  {id:'trip',   e:'✈️', label:'A trip',                          name:'Goa trip',      target:30000,  months:14},
+  {id:'laptop', e:'💻', label:'A laptop or phone',               name:'New laptop',    target:60000,  months:12},
+  {id:'bike',   e:'🛵', label:'A bike or scooter',               name:'Bike',          target:120000, months:18},
+  {id:'first',  e:'🌱', label:'Not sure yet: my first ₹10,000',  name:'First ₹10,000', target:10000,  months:8}
+];
+
+const TERMS = {
+  indexfund:{t:'Index fund', d:'A basket holding small pieces of the biggest companies in the market. Nobody picks favourites: it holds them all.', eg:'Put in ₹500 and it is spread across all of those companies.'},
+  market:{t:'The market', d:'Where pieces of companies are bought and sold. Prices change every working day, up and down.', eg:'The same piece can cost ₹100 one week and ₹96 the next.'},
+  fee:{t:'Yearly fee', d:'What it costs to run the fund. It is taken from inside the fund a little each day, never from your bank. The formal name is expense ratio.', eg:'For example, ₹3 a year for every ₹1,000 you hold.'},
+  pieces:{t:'Pieces', d:'When you add money you buy pieces of the fund at that day\'s price. A lower price means more pieces for the same rupees. The formal name is units.', eg:'₹500 buys 5 pieces at ₹100 each, or about 5.2 pieces at ₹96 each.'},
+  worth:{t:'What it\'s worth', d:'What you would get if you took everything out today, before any tax. It changes with market prices.', eg:'You put in ₹2,000. This week it might be worth ₹2,060, next week ₹1,950.'},
+  rbi:{t:'RBI', d:'The Reserve Bank of India. It sets the rules that banks have to follow.', eg:'Banks must follow its rules on deposits.'},
+  liquid:{t:'Liquid fund', d:'The formal name for what this app calls a parking fund. It lends money for very short periods, so its value moves very little.', eg:'₹1,000 might be worth ₹1,001 a week later.'},
+  fno:{t:'F&O', d:'Short for futures and options. These are short-term bets on where prices will go, and losses can be fast and large.', eg:'A SEBI study found 93% of individual traders lost money over three years.'},
+  sebi:{t:'SEBI', d:'India\'s markets regulator. Funds and investing apps have to follow its rules.', eg:'Funds must publish their fees and what they hold.'}
+};
+const GLOSS = {'index fund':'indexfund', 'liquid fund':'liquid', 'the market':'market', 'yearly fee':'fee', 'pieces':'pieces', 'SEBI':'sebi', 'RBI':'rbi', 'F&O':'fno'};
+function gloss(text){
+  const seen = {};
+  return text.replace(/index fund|liquid fund|the market|yearly fee|pieces|SEBI|RBI|F&O/g, m => { if (seen[m]) return m; seen[m] = 1; return term(GLOSS[m], m); });
+}
+const term = (k, label) => '<button class="term" data-act="term" data-v="' + k + '">' + label + '</button>';
+
+const OPTIONS = [
+  {id:'index', sel:true, goal:true, main:'Can be worth less than you put in for months at a time.',
+    risks:['Its value moves with share prices, so in some weeks or months it will be worth less than you put in.', 'A fall can last for months, and sometimes years.', 'If you need the money during a fall, you take it out at the lower price.'], fee:3, days:'about 2 working days', exit:'No charge for taking money out.', one:'A basket of the biggest companies.', inside:['Reliance Industries', 'HDFC Bank', 'ICICI Bank', 'Infosys', 'TCS', 'Bharti Airtel', 'ITC', 'Larsen and Toubro', 'State Bank of India', 'Axis Bank'], moreN:40, insideNote:'Example companies from a 50-company index. A real fund publishes its full list every month.', n:'Index fund', risk:3, what:'A basket of the biggest companies in the market.', bump:'Moves with the market. Can fall for months, and has grown over long periods in the past.', suits:'Goals a few years away, or longer.',
+    own:'Your money is spread across a basket of the biggest companies. Nobody picks favourites: it holds them all.', cost:'One yearly fee of about ₹3 for every ₹1,000 you hold.', access:'Take money out on any day. It reaches your bank in about 2 working days. Nothing is locked in.', safe:'Your money buys pieces of a fund that follows SEBI rules and is held apart from this app. Its value can go down as well as up.'},
+  {id:'parking', sel:true, goal:true, main:'Grows slowly, and is not guaranteed.',
+    risks:['It grows slowly, so over many years rising prices can eat into what your money buys.', 'It is not guaranteed. A small loss is rare, but possible if a borrower fails to pay.'], fee:2, days:'about 1 working day', exit:'No charge for taking money out.', one:'Short loans to the government, banks and big companies.', inside:['Short loans to the Government of India', 'Short deposits with big banks', 'Short loans to large companies'], moreN:0, insideNote:'No company shares. A real fund publishes exactly whom it has lent to.', n:'Parking fund', risk:1, what:'Lends money for very short periods. The formal name is liquid fund.', bump:'Moves very little from week to week.', suits:'Money you need within a year or two, or an emergency cushion.',
+    own:'Your money is lent out for very short periods and earns a little each week.', cost:'One yearly fee of about ₹2 for every ₹1,000 you hold.', access:'Take money out on any day. It reaches your bank in about 1 working day. Nothing is locked in.', safe:'Your money buys pieces of a fund that follows SEBI rules and is held apart from this app. It moves very little, but it is not guaranteed.'},
+  {id:'fd', sel:true, goal:true, main:'Taking it out early costs some of the interest.',
+    risks:['Taking it out early usually means a small cut in the interest.', 'The rate is fixed, so over many years rising prices can eat into what your money buys.', 'Your money depends on that one bank. Deposits are insured only up to a limit.'], fee:0, days:'about 1 working day', exit:'Taking it out before the end date usually means a small cut in the interest.', one:'One bank, a fixed time, a fixed rate.', inside:['One bank that you choose'], moreN:0, insideNote:'No company shares. Your money is a deposit with that bank.', n:'Fixed deposit', risk:1, what:'You lend money to a bank for a fixed time at a fixed rate.', bump:'Does not move. Taking it out early usually costs a small penalty.', suits:'Money you will not touch until a known date.',
+    own:'You have lent your money to a bank at a rate that was fixed when you started.', cost:'No yearly fee.', access:'You can take it out early, usually with a small cut in the interest.', safe:'A deposit with a bank, which follows RBI rules. The rate is fixed when you start.'},
+  {id:'gold', sel:true, goal:true, main:'The price can fall and stay down for years.',
+    risks:['The gold price can fall and stay down for years.', 'Gold pays nothing while you hold it. You gain only if its price rises.', 'If you need the money during a fall, you take it out at the lower price.'], fee:5, days:'about 2 working days', exit:'No charge for taking money out.', one:'Follows the price of gold.', inside:['Gold bars kept in a vault'], moreN:0, insideNote:'No company shares. The fund holds gold on your behalf.', n:'Gold fund', risk:3, what:'Tracks the price of gold without you holding any.', bump:'Can rise or fall for long stretches.', suits:'A small share of long-term savings.',
+    own:'Your money follows the price of gold. You do not hold any metal yourself.', cost:'One yearly fee of about ₹5 for every ₹1,000 you hold.', access:'Take money out on any day. It reaches your bank in about 2 working days.', safe:'Your money buys pieces of a fund that follows SEBI rules. Its value follows the gold price, up and down.'},
+  {id:'shares', sel:true, main:'One company: the price can fall a long way and not come back.', fee:0, days:'about 2 working days', exit:'A small charge each time you sell (example: about ₹20 an order).', one:'One company. Its price can swing sharply.',
+    own:'Your money is in the shares of one company. If it does well you gain, and if it does badly you lose.', cost:'No yearly fee. A small charge each time you buy or sell (example: about ₹20 an order).', access:'Sell on any working day. The money reaches your bank in about 2 working days, at whatever the price is that day.', safe:'Shares are bought on exchanges that follow SEBI rules, and are held in your own name. The price can go down as well as up, and can fall a long way.',
+    risks:['Everything rides on one company. Bad news about it can cut the price sharply in a single day.', 'A share can stay down for years. If the company fails, the money does not come back.', 'Choosing well takes time: reading results and following the company.', 'It does not fit a goal with a date. The price on the day you need the money could be far lower.'],
+    inside:['One company that you pick'], moreN:0, insideNote:'Everything rides on that one company.', n:'Shares of one company', risk:4, what:'You own a piece of a single company.', bump:'Can rise or fall sharply on news about that one company.', suits:'People who have time to study companies and can afford to be wrong.'},
+  {id:'fno', sel:true, main:'Most people lose, and losses are fast.', fee:0, days:'about 1 working day', exit:'A charge on every trade (example: about ₹20 an order), whether it wins or loses.', one:'Short-term bets on prices. Most people lose.',
+    own:'Your money is in short-term bets on where prices will go. You do not own any company through these.', cost:'No yearly fee. A charge on every trade (example: about ₹20 an order), whether it wins or loses.', access:'Close a bet on any working day and the money that is left reaches your bank in about 1 working day. There may be little left.', safe:'These are traded on exchanges that follow SEBI rules. That keeps trading fair. It does not protect you from losing. The value can go down as well as up, and can go to nothing.',
+    risks:['Most people lose. A SEBI study found 93% of individual traders lost money over three years.', 'Losses are fast. A bet can lose most of its value in a few days.', 'Each contract has an end date. When that date passes, a losing contract is worth nothing, and there is no waiting for it to come back.', 'Small price moves are magnified, so you can lose more than you expected.', 'It does not fit a goal. This is short-term betting, not saving.'],
+    inside:['Contracts that bet on prices'], moreN:0, insideNote:'You do not own any company through these.', n:'Futures and options', risk:5, what:'Short-term bets on where prices will go. Often shortened to F&O.', bump:'Losses can be fast and large. A SEBI study found 93% of individual traders lost money over three years.', suits:'Experienced traders using money they can afford to lose.'}
+];
+const opt = () => OPTIONS.find(o => o.id === S.option);
+const price = () => S.prices[S.option];
+const kindTag = o => !o.sel ? '' : '<span class="tag"><span class="dot" style="background:var(--' + (o.risk >= 4 ? 'coral' : o.risk === 1 ? 'mint' : 'violet') + ')"></span>' + (o.risk >= 4 ? 'High risk. Not built for goals' : o.risk === 1 ? 'For money needed soon' : 'For money needed later') + '</span>';
+const steps = k => '<div class="steps" role="img" aria-label="Step ' + k + ' of 4">' + [1, 2, 3, 4].map(i => '<i class="' + (i <= k ? 'on' : '') + '"></i>').join('') + '</div>';
+const moLabel = m => m % 12 === 0 ? (m / 12) + (m === 12 ? ' year' : ' years') : m + ' months';
+function jar(drop, lvl, lvlFrom){
+  const scene = lvl !== undefined;
+  const to = scene ? lvl : Math.max(S.putIn > 0 ? 0.05 : 0, Math.min(1, S.putIn / S.target)), from = scene ? lvlFrom : drop ? Math.max(0, Math.min(to, S.jarFrom || 0)) : to;
+  if (scene) drop = false;
+  const body = 'M18 30 Q18 22 26 22 H74 Q82 22 82 30 V112 Q82 124 70 124 H30 Q18 124 18 112 Z';
+  return '<svg class="jar' + (drop ? ' drop' : '') + (scene && from < to ? ' rise' : '') + '" style="--to:' + to.toFixed(3) + ';--from:' + from.toFixed(3) + '" viewBox="0 0 100 132" role="img" aria-label="A jar filled to show how much of the goal you have put in">' +
+    '<defs><clipPath id="jarclip"><path d="' + body + '"></path></clipPath></defs><path class="jglass" d="' + body + '"></path>' +
+    '<g clip-path="url(#jarclip)"><g class="jliq"><path class="jwave" d="M-24 27 q8 -6 16 0 t16 0 t16 0 t16 0 t16 0 t16 0 t16 0 t16 0 t16 0 V260 H-24 Z"></path></g></g>' +
+    '<circle class="jcoin" cx="50" cy="26" r="7"></circle><path class="jline" d="' + body + '"></path><path class="jline" d="M22 14 H78"></path></svg>';
+}
+const dots = r => '<span class="dots" role="img" aria-label="' + r + ' out of 5">' + [1, 2, 3, 4, 5].map(i => '<i class="' + (i <= r ? 'on' : '') + '"></i>').join('') + '</span>';
+function insideChips(o, max){
+  const rest = o.inside.length - max + o.moreN;
+  return o.inside.slice(0, max).map(x => '<span>' + x + '</span>').join('') + (rest > 0 ? '<span>+ ' + rest + ' more</span>' : '');
+}
+let SKIN = 'cobalt';
+const SKINS = [['cobalt', 'Cobalt Pop'], ['mint', 'Mint Fizz'], ['grape', 'Grape Soda']];
+function applySkin(v, save){
+  SKIN = v;
+  try { document.documentElement.dataset.skin = v; if (save) localStorage.setItem('shuru-skin', v); } catch (e) {}
+}
+let THEME = 'light';
+try { document.documentElement.dataset.theme = 'light'; } catch (e) {}
+const ICON_SUN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M18.7 5.3L17 7M7 17l-1.7 1.7"></path></svg>';
+const ICON_MOON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg>';
+function curTheme(){
+  if (THEME) return THEME;
+  try { const t = document.documentElement.dataset.theme; if (t === 'dark' || t === 'light') return t; return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; } catch (e) { return 'light'; }
+}
+const FIT = {index:m => m >= 36, gold:m => m >= 36, parking:m => m < 36, fd:m => m < 36};
+const fits = o => !!FIT[o.id] && FIT[o.id](S.months);
+const defaultOption = () => S.months < 36 ? 'parking' : 'index';
+const span = () => S.months % 12 === 0 && S.months >= 24 ? (S.months / 12) + ' years' : S.months + ' months';
+function whyLine(){
+  const o = opt();
+  if (S.picked) return 'You chose this.' + (fits(o) ? '' : ' Its card says it suits a different goal length from yours. The choice is still yours.');
+  return S.months < 36
+    ? 'Your goal is ' + span() + ' away. Money needed that soon starts in the steadiest option. You can choose a different one.'
+    : 'Your goal is ' + span() + ' away. Goals that far off start in the index fund. You can choose a different one.';
+}
+
+const LESSONS = [
+  {id:'l1', title:'What you just bought', cards:[
+    {art:'basket', h:'You own tiny pieces of many big companies', p:'Your money did not go into one company. It was spread across a whole basket of them.'},
+    {art:'line', h:'The basket has a price that moves', p:'When those companies are worth more, your pieces are worth more. On bad weeks they are worth less.'},
+    {art:'bars', h:'You keep the pieces you buy', p:'A lower price does not take pieces away from you. It changes what they would sell for today.'}],
+    quiz:{q:'Where is your money now?', opts:['In one company\'s shares','In a basket of many big companies','In a bank deposit'], right:1, why:'It is in an index fund, a basket of many big companies.'}},
+  {id:'l2', title:'Why the number moves', cards:[
+    {art:'line', h:'Prices change every working day', p:'People buy and sell all day, so the price never sits still. One week tells you very little.'},
+    {art:'bars', h:'Your goal is months away', p:'What matters is the price when you need the money, and how much you have added by then.'}],
+    quiz:{q:'The value is a little lower this week. What does that tell you about your goal?', opts:['Not much. One week is a small part of the journey','The plan has failed'], right:0, why:'Short moves are normal. Your goal bar counts what you have put in.'}},
+  {id:'l3', title:'Your money will fall at some point', cards:[
+    {art:'dip', h:'One day "worth" will be below "put in"', p:'This happens to everyone who invests in the market. It does not mean you chose badly.'},
+    {art:'dip', h:'Falls have happened many times before', p:'Some ended in weeks and some took years. Nobody can say when the next one comes or how long it lasts.'},
+    {art:'choices', h:'You will have three choices', p:'Keep going, pause, or stop. While prices are lower, the same rupees buy more pieces.'}],
+    quiz:{q:'Your ₹2,000 shows as ₹1,880 after a bad week. What has happened?', opts:['The price fell. I still own everything I bought','₹120 was taken as a fee','The money is gone for good'], right:0, why:'You own the same pieces. Their price today is lower.'}},
+  {id:'l4', title:'What this costs you', cards:[
+    {art:'fee', h:'One small yearly fee', p:'About ₹3 a year for every ₹1,000 you hold. It is taken inside the fund, never from your bank. (Illustrative figure.)'},
+    {art:'choices', h:'Nothing to add, pause or take out', p:'There is no charge for adding money, skipping a week, pausing, or withdrawing in this plan. (Illustrative.)'}],
+    quiz:{q:'You hold ₹10,000 for a year. Roughly what is the yearly fee?', opts:['About ₹30','About ₹300','About ₹1,000'], right:0, why:'₹3 per ₹1,000, so about ₹30 on ₹10,000.'}},
+  {id:'l5', title:'Why small amounts count', cards:[
+    {art:'bars', h:'Early on, progress is what you add', p:'In the first year almost all of your goal bar comes from your own money. Growth matters more later.'},
+    {art:'basket', h:'So the habit is the point', p:'A small amount added most weeks beats a large amount added once.'}],
+    quiz:{q:'In your first few months, what moves your goal bar most?', opts:['What I add','Market gains'], right:0, why:'Your own additions do nearly all the work at the start.'}}
+];
+const DIP_LESSON = () => ({id:'dip', title:'What is happening right now', cards:[
+  {art:'dip', h:'Prices are lower than a few weeks ago', p:'You own the same pieces as before. What changed is the price they would sell for today.'},
+  {art:'bars', h:'Money added now buys more', p:'₹500 added now buys what cost ' + inr(500 * S.peak / price()) + ' at the recent high.'},
+  {art:'choices', h:'It is your call', p:'You can keep going, pause for a month, or stop. Falls have ended before, some quickly and some slowly. The future can be different.'}],
+  quiz:null});
+
+function art(type){
+  const T = 'style="fill:var(--violet)"', A = 'style="fill:var(--mango)"', L = 'style="stroke:var(--violet);fill:none;stroke-width:5;stroke-linecap:round;stroke-linejoin:round"';
+  if (type === 'basket'){
+    let s = '';
+    for (let r = 0; r < 3; r++) for (let c = 0; c < 6; c++){
+      const k = r * 6 + c;
+      s += '<rect class="a-pop" x="' + (26 + c * 40) + '" y="' + (14 + r * 34) + '" width="28" height="24" rx="6" style="animation-delay:' + (k * 45) + 'ms;fill:var(' + (k % 5 === 0 ? '--mango' : '--violet') + ')"></rect>';
+    }
+    return '<svg viewBox="0 0 290 120" role="img" aria-label="A grid of small blocks, each one a company">' + s + '</svg>';
+  }
+  if (type === 'line') return '<svg viewBox="0 0 290 120" role="img" aria-label="A price line that wiggles and rises"><polyline class="a-draw" points="14,92 48,80 78,88 108,62 138,72 170,46 200,58 232,34 276,24" ' + L + '></polyline></svg>';
+  if (type === 'dip') return '<svg viewBox="0 0 290 120" role="img" aria-label="A value line dropping below the put-in line and coming part of the way back"><line x1="14" y1="52" x2="276" y2="34" style="stroke:var(--ink-2);stroke-width:2;stroke-dasharray:5 6"></line><polyline class="a-draw" points="14,56 50,46 86,40 116,70 146,98 176,90 206,72 240,62 276,50" style="stroke:var(--dip);fill:none;stroke-width:5;stroke-linecap:round;stroke-linejoin:round"></polyline></svg>';
+  if (type === 'fee') return '<svg viewBox="0 0 290 120" role="img" aria-label="A long bar with a very thin slice marked as the fee"><rect x="14" y="44" width="262" height="30" rx="8" ' + T + '></rect><rect class="a-pop" x="268" y="36" width="5" height="46" rx="2" ' + A + '></rect></svg>';
+  if (type === 'bars') return '<svg viewBox="0 0 290 120" role="img" aria-label="A tall bar for what you add and a short bar for growth"><rect class="a-grow" x="70" y="18" width="60" height="92" rx="8" ' + T + '></rect><rect class="a-grow" x="160" y="92" width="60" height="18" rx="6" style="fill:var(--mango);animation-delay:.25s"></rect></svg>';
+  return '<svg viewBox="0 0 290 120" role="img" aria-label="Three choices side by side"><rect class="a-pop" x="14" y="40" width="80" height="40" rx="20" ' + T + '></rect><rect class="a-pop" x="105" y="40" width="80" height="40" rx="20" style="fill:var(--mango);animation-delay:.15s"></rect><rect class="a-pop" x="196" y="40" width="80" height="40" rx="20" style="fill:var(--ink-2);animation-delay:.3s"></rect></svg>';
+}
+
+/* ---------- state ---------- */
+let S;
+function fresh(){
+  return {screen:'hello', custom:false, tab:'home', goal:null, target:30000, months:14, rhythm:null, salaryDay:1, plan:0, payAmt:100,
+    started:false, week:0, option:'index', picked:false, prices:{index:100, parking:100, fd:100, gold:100, shares:100, fno:100}, risk:null, peak:100, queue:[], inDip:false, dipStart:0, weekChange:0,
+    units:0, putIn:0, exp:0, contribs:[], asked:0, added:0, debits:0, lastScreen:null,
+    pending:false, paused:false, pausedUntil:null, pauseEnded:false, stopped:false,
+    icon:'⭐', outAmt:0, takenOut:0, edit:null, past:null, prac:null, name:'', nameDraft:'', nameEdit:false, remind:true, vid:null, game:null, noIncome:0, missed:0, quiet:0, adjustOffer:false, adjustDone:false, pausedMonths:0, seen:{}, checkin:false, ms:[], toast:null, recovered:null, stepUp:false, stepUpDone:false,
+    lesson:null, sheet:null, event:'new', back:null, err:null};
+}
+S = fresh();
+
+const value = () => S.units * price();
+const pace = () => S.rhythm === 'auto' ? S.plan / 4 : S.plan;
+const pct = () => Math.min(100, S.putIn / S.target * 100);
+const pctText = () => inr(S.putIn) + ' of ' + inr(S.target);
+const below = () => (1 - price() / S.peak) * 100;
+const morePieces = () => (S.peak / price() - 1) * 100;
+const remaining = () => Math.max(0, S.target - S.putIn);
+const projWeek = () => S.week + remaining() / pace();
+function standing(){
+  if (remaining() === 0) return 'You have put in the full amount for this goal.';
+  const days = Math.round((S.putIn - S.exp) / pace() * 7);
+  const d = dateAt(projWeek());
+  if (days >= 6) return 'About ' + plural(days, 'day') + ' ahead of your own plan. At this pace you get there around ' + d + '.';
+  if (days <= -6) return 'At this pace you get there around ' + d + ', about ' + plural(-days, 'day') + ' later than first planned.';
+  return 'On track with your own plan. At this pace you get there around ' + d + '.';
+}
+function computePlan(){
+  S.plan = S.rhythm === 'auto' ? Math.ceil(S.target / S.months / 100) * 100 : Math.ceil(S.target / (S.months * 4) / 10) * 10;
+  S.payAmt = S.rhythm === 'auto' ? S.plan : 100;
+}
+function addMs(id, t, d){ if (S.ms.some(m => m.id === id)) return; S.ms.push({id, t}); S.toast = {kind:'calm', h:t, p:d}; }
+function contribute(amt, kind){
+  S.units += amt / price(); S.putIn += amt; S.contribs.push({w:S.week, amt, kind});
+  const n = S.contribs.length;
+  if (n === 2) addMs('second', 'Second investment', 'This is the one that turns a first try into a habit.');
+  if (S.putIn >= 1000 && S.target > 4000) addMs('1k', 'First ₹1,000 put in', 'Every rupee of it is yours and counts towards ' + S.goal + '.');
+  if (pct() >= 10) addMs('10', 'A tenth of the way', 'A tenth of ' + S.goal + ' is covered.');
+  if (pct() >= 25) addMs('25', 'A quarter of the way', 'A quarter of ' + S.goal + ' is covered.');
+  if (pct() >= 50) addMs('50', 'Halfway there', 'Half of ' + S.goal + ' is covered.');
+  if (pct() >= 75) addMs('75', 'Three quarters of the way', 'Three quarters of ' + S.goal + ' is covered.');
+  if (pct() >= 100) addMs('100', 'Goal amount reached', 'You have put in everything ' + S.goal + ' needs.');
+}
+function nextMs(){
+  const c = [[S.target * 0.1, 'A tenth of the way'], [S.target * 0.25, 'A quarter of the way'], [S.target * 0.5, 'Halfway there'], [S.target * 0.75, 'Three quarters of the way'], [S.target, 'Goal amount reached']];
+  if (S.target > 4000) c.push([1000, 'First ₹1,000 put in']);
+  c.sort((x, y) => x[0] - y[0]);
+  return c.find(x => x[0] > S.putIn + 0.5) || null;
+}
+const lighterAmt = () => Math.max(100, Math.ceil(S.plan / 2 / 10) * 10);
+const baseMove = w => [0.4, -0.3, 0.6, 0.2, -0.5, 0.7, 0.3, -0.2][w % 8];
+
+function advanceWeek(){
+  if (!S.started) return;
+  S.toast = null; S.err = null;
+  if (S.rhythm === 'flex' && S.pending){ S.asked++; S.exp += S.plan; S.pending = false; S.missed++; S.quiet++; }
+  S.week++;
+  const move = S.queue.length ? S.queue.shift() : baseMove(S.week);
+  const before = value();
+  S.prices.index *= 1 + move / 100; S.prices.parking *= 1.0012; S.prices.fd *= 1.0013; S.prices.gold *= 1 + (0.15 - 0.3 * move) / 100;
+  S.prices.shares *= 1 + (2.2 * move + [1.5, -2.5, 3, -1, -3.5, 2][S.week % 6]) / 100;
+  S.prices.fno *= 1 + [-18, 22, -30, -12, 15, -35, 8, -20][S.week % 8] / 100;
+  S.weekChange = value() - before;
+  if (price() > S.peak){
+    if (S.inDip){ S.recovered = S.week - S.dipStart; S.inDip = false; S.event = 'recovered'; }
+    S.peak = price();
+  } else if (!S.inDip && price() <= S.peak * 0.96){ S.inDip = true; S.dipStart = S.week; S.recovered = null; }
+  if (S.paused && S.pausedUntil !== null && S.week >= S.pausedUntil) S.pauseEnded = true;
+  const active = !S.paused && !S.stopped;
+  if (S.rhythm === 'auto' && S.week % 4 === 0){
+    if (active){
+      contribute(S.plan, 'auto'); S.exp += S.plan; S.debits++; S.event = 'debit';
+      if (!S.toast) S.toast = {kind:'calm', h:inr(S.plan) + ' went in today', p:esc(S.goal) + ' is now ' + pctText() + ' saved.'};
+    }
+  }
+  if (S.rhythm === 'flex' && active){ S.pending = true; S.event = 'pending'; if (S.quiet >= 3 && !S.adjustDone) S.adjustOffer = true; }
+  if (S.rhythm === 'auto' && S.week % 4 === 0 && S.paused) S.pausedMonths++;
+  if (S.week === 4 && !S.stopped) addMs('month', 'One month in', 'You have stayed with it for a month.');
+  if (S.rhythm === 'auto' && S.week === 12 && active && !S.stepUpDone) S.stepUp = true;
+  S.checkin = true;
+  if (S.inDip) S.event = 'dip';
+  if (S.pauseEnded) S.event = 'pauseEnded';
+  if (['lesson', 'add', 'stop'].indexOf(S.screen) < 0) S.screen = 'home';
+  stopReplay();
+}
+function nextLesson(){ return LESSONS.find(l => !S.seen[l.id]) || null; }
+
+/* ---------- screens ---------- */
+function vHello(){
+  return '<div class="hello"><div class="wave" aria-hidden="true">👋</div><h1>Let\'s get your first goal going</h1>' +
+    '<p>Four quick questions, about a minute. No money moves until you say so.</p>' +
+    '<div class="perks"><div class="perk"><span aria-hidden="true">💰</span>Start with as little as ₹100</div>' +
+    '<div class="perk"><span aria-hidden="true">⏸️</span>Skip a week or pause, free</div>' +
+    '<div class="perk"><span aria-hidden="true">🏦</span>Take your money out any day</div></div></div>' +
+    '<button class="btn" data-act="go" data-v="welcome">Let\'s go</button>';
+}
+function vWelcome(){
+  return '<button class="back" data-act="go" data-v="hello">Back</button>' + steps(1) + '<h1>What are you saving for?</h1><p class="muted">Pick whatever feels closest. You can rename or change it later.</p>' +
+    '<div class="tiles">' + GOALS.map(g => '<button class="tile" data-act="goal" data-v="' + g.id + '"><span class="e" aria-hidden="true">' + g.e + '</span>' + g.label + '</button>').join('') +
+    (S.custom ? '' : '<button class="tile wide" data-act="custom"><span class="e" aria-hidden="true">✨</span>Something else</button>') + '</div>' +
+    (S.custom ? '<div class="field"><label for="goalName">What would you call it?</label><input id="goalName" maxlength="24" placeholder="For example: Sister\'s wedding gift" autocomplete="off"></div>' +
+      (S.err ? '<p class="small" style="color:var(--dip)">' + S.err + '</p>' : '') + '<button class="btn" data-act="goalCustom">Use this goal</button>' : '');
+}
+function vDetails(){
+  const amts = [10000, 30000, 60000, 120000], mos = [6, 8, 12, 14, 18, 24, 36, 48, 60];
+  return '<button class="back" data-act="go" data-v="welcome">Back</button>' + steps(2) + '<h1>How much does ' + esc(S.goal) + ' need, and by when?</h1>' +
+    '<div class="field"><label for="targetAmt">Roughly how much? A guess is fine</label><input id="targetAmt" type="number" inputmode="numeric" min="1000" step="500" value="' + S.target + '"></div>' +
+    '<div class="chips">' + amts.map(a => '<button class="chip" data-act="amt" data-v="' + a + '" aria-pressed="' + (S.target === a) + '">' + inr(a) + '</button>').join('') + '</div>' +
+    '<p style="font-weight:700;margin-top:6px">By when?</p>' +
+    '<div class="chips">' + mos.map(m => '<button class="chip" data-act="months" data-v="' + m + '" aria-pressed="' + (S.months === m) + '">' + moLabel(m) + '</button>').join('') + '</div>' +
+    (S.err ? '<p class="small" style="color:var(--dip)">' + S.err + '</p>' : '') +
+    '<div class="spacer"></div><p class="note">Nothing is final. You can change the amount and the date later.</p><button class="btn" data-act="toRhythm">Continue</button>';
+}
+function vRhythm(){
+  let h = '<button class="back" data-act="go" data-v="details">Back</button>' + steps(3) + '<h1>How does money reach you?</h1><p class="muted">There is no wrong answer. This only shapes how the plan fits around your income.</p>' +
+    '<button class="opt" data-act="rhythm" data-v="flex" aria-pressed="' + (S.rhythm === 'flex') + '"><span class="e" aria-hidden="true">🌊</span>It varies<span>Stipend, freelance work, part-time pay or pocket money. You add money when it arrives. Skipping costs nothing.</span></button>' +
+    '<button class="opt" data-act="rhythm" data-v="auto" aria-pressed="' + (S.rhythm === 'auto') + '"><span class="e" aria-hidden="true">📅</span>A fixed salary every month<span>The money goes in by itself the day after your salary lands, before it can be spent.</span></button>';
+  if (S.rhythm === 'auto'){
+    h += '<div class="field"><label for="salaryDay">Which day of the month are you paid?</label><select id="salaryDay">';
+    for (let d = 1; d <= 28; d++) h += '<option value="' + d + '"' + (d === S.salaryDay ? ' selected' : '') + '>' + d + '</option>';
+    h += '<option value="30"' + (S.salaryDay === 30 ? ' selected' : '') + '>Last day</option></select></div>';
+  }
+  return h + '<div class="spacer"></div><button class="btn" data-act="toPlan"' + (S.rhythm ? '' : ' disabled') + '>Show my plan</button>';
+}
+function planSentence(){
+  return S.rhythm === 'auto'
+    ? inr(S.plan) + ' a month gets you to ' + inr(S.target) + ' for ' + esc(S.goal) + ' in ' + span() + '.'
+    : 'About ' + inr(S.plan) + ' a week gets you to ' + inr(S.target) + ' for ' + esc(S.goal) + ' in ' + span() + '.';
+}
+function vPlan(){
+  const list = OPTIONS.filter(o => o.goal || o.id === S.option).sort((x, y) => (fits(y) ? 1 : 0) - (fits(x) ? 1 : 0));
+  return '<button class="back" data-act="go" data-v="rhythm">Back</button>' + steps(4) + '<h1>Here is your plan</h1>' +
+    '<div class="hero"><p class="plan">' + planSentence() + '</p>' +
+    '<p class="small">' + (S.rhythm === 'auto' ? 'It goes in by itself the day after your salary lands. You can pause any month.' : 'Add it when money arrives. Some weeks more, some weeks nothing. A skipped week only moves the date.') + '</p></div>' +
+    '<h3>Where should the money go?</h3><p class="small muted">' + gloss(whyLine()) + '</p>' +
+    list.map((o, i) => { const on = o.id === S.option; return '<button class="opt pick" style="animation-delay:' + (i * 90) + 'ms" data-act="pick" data-v="' + o.id + '" aria-pressed="' + on + '">' +
+      '<span class="kv"><b>' + o.n + '</b>' + (fits(o) ? '<span class="tag">Fits your goal</span>' : '') + '</span><span>' + kindTag(o) + '</span><span>' + o.one + '</span><span>How bumpy: ' + dots(o.risk) + '</span><span><b>Main risk:</b> ' + o.main + '</span>' +
+      (on ? '<span class="inside">' + insideChips(o, 5) + '</span><span>' + o.insideNote + '</span>' : '') + '</button>'; }).join('') +
+    '<button class="link" data-act="explore" data-v="plan">Compare every option, including shares and F&amp;O</button>' +
+    '<p class="note">The plan counts only what you put in. Growth could get you there sooner. A fall in prices could make it later.</p>' +
+    '<div class="spacer"></div><div class="cta"><button class="btn" data-act="go" data-v="trust">Continue with ' + opt().n + '</button></div>';
+}
+function vTrust(){
+  const o = opt(), review = S.started;
+  const yearly = o.fee > 0 ? ' If you were holding your full goal of ' + inr(S.target) + ', that would be about ' + inr(S.target / 1000 * o.fee) + ' a year.' : '';
+  return '<button class="back" data-act="' + (review ? 'home' : 'go') + '" data-v="plan">Back</button><h1>' + (review ? 'What happens to your money' : 'Before you pay: what happens to your money') + '</h1><p class="muted">' + (review ? 'Your goal is held in: ' : 'You chose: ') + o.n + '.</p>' +
+    '<div class="card line"><h3>What you are buying</h3><div class="inside">' + insideChips(o, 6) + '</div><p class="note">' + o.insideNote + '</p></div>' +
+    '<div class="card"><h3>What it costs</h3><p>Nothing to start, add money, skip or pause. ' + gloss(o.cost) + yearly + '</p></div>' +
+    '<div class="card"><h3>Getting it back</h3><p>' + o.access + '</p>' + (review ? '<button class="link" data-act="go" data-v="out">Take money out</button>' : '') + '</div>' +
+    '<div class="card"><h3>How safe it is</h3><p>' + gloss(o.safe) + '</p></div>' +
+    '<div class="card' + (o.risk >= 4 ? ' dip' : '') + '"><h3>' + (o.risk >= 4 ? 'The risks, again' : 'The risks') + '</h3><ul class="risks">' + o.risks.map(r => '<li>' + gloss(r) + '</li>').join('') + '</ul></div>' +
+    '<p class="note">These fees and timings are example figures for this prototype.</p>' +
+    '<div class="spacer"></div><div class="cta">' + (review ? '<button class="btn alt" data-act="home">Back to my goal</button>' : '<button class="btn" data-act="go" data-v="pay">That is clear</button>') + '</div>';
+}
+function vOut(){
+  const o = opt(), v = Math.floor(value()), amt = Math.min(S.outAmt || 0, v);
+  const set = [[500, inr(500)], [Math.floor(v / 2), 'Half'], [v, 'All of it']].filter(x => x[0] > 0 && x[0] <= v).filter((x, i, a) => a.findIndex(y => y[0] === x[0]) === i);
+  if (v < 1) return '<button class="back" data-act="home">Back</button><h1>Take money out</h1><div class="card"><p>There is no money in ' + esc(S.goal) + ' right now.</p></div><div class="spacer"></div><button class="btn alt" data-act="home">Back to my goal</button>';
+  return '<button class="back" data-act="home">Back</button><h1>Take money out</h1><p class="muted">Your money is yours. You can take out up to ' + inr(v) + ', which is ' + term('worth', 'what it is worth') + ' today.</p>' +
+    (S.putIn - value() > 1 ? '<div class="card dip"><p>Right now this is ' + inr(S.putIn - value()) + ' less than you put in, because prices are lower. Whatever you take out today is taken at today\'s lower price.</p></div>' : '') +
+    '<div class="chips">' + set.map(x => '<button class="chip" data-act="outAmt" data-v="' + x[0] + '" aria-pressed="' + (amt === x[0]) + '">' + x[1] + '</button>').join('') + '</div>' +
+    '<div class="field"><label for="outAmt">Or type an amount</label><input id="outAmt" type="number" inputmode="numeric" min="1" max="' + v + '" step="50" value="' + amt + '"></div>' +
+    (S.err ? '<p class="small" style="color:var(--dip)">' + S.err + '</p>' : '') +
+    '<div class="card"><div class="rows"><div><span>Reaches your bank in</span><b>' + o.days + '</b></div><div><span>Charge</span><b>' + (o.id === 'fd' ? 'See below' : '₹0') + '</b></div></div>' +
+    '<p class="small muted">' + o.exit + ' Any tax depends on how long you held it and how much you gained.</p></div>' +
+    '<p class="small muted">' + esc(S.goal) + ' stays open. You can add money again whenever you like.</p>' +
+    '<div class="spacer"></div><p class="note">No real money moves in this prototype. Example figures.</p><button class="btn" data-act="outPay">Take it out</button>';
+}
+function vPay(){
+  const set = [100, 250, 500, S.plan].filter((v, i, a) => a.indexOf(v) === i).sort((a, b) => a - b);
+  return '<button class="back" data-act="go" data-v="trust">Back</button><h1>Make your first investment</h1><p class="muted">Start with any amount from ₹100. You can change it every time.</p>' +
+    '<p class="small"><b>No charge to add money.</b> ' + opt().access.split('. ')[0].replace(/\.$/, '') + '.</p>' +
+    '<div class="chips">' + set.map(a => '<button class="chip" data-act="payAmt" data-v="' + a + '" aria-pressed="' + (S.payAmt === a) + '">' + inr(a) + (a === S.plan ? ' (your plan)' : '') + '</button>').join('') + '</div>' +
+    '<div class="field"><label for="payCustom">Or type an amount</label><input id="payCustom" type="number" inputmode="numeric" min="100" step="50" value="' + S.payAmt + '"></div>' +
+    (S.err ? '<p class="small" style="color:var(--dip)">' + S.err + '</p>' : '') +
+    '<div class="spacer"></div><p class="note">No real payment is made in this prototype.</p><button class="btn" data-act="pay">Invest now</button>';
+}
+function vDone(){
+  const amt = S.contribs[0].amt;
+  return '<div class="step">Done</div><h1>' + esc(S.goal) + ' has started</h1>' +
+    '<div class="hero jarhero"><div class="who"><span class="gicon" aria-hidden="true">' + S.icon + '</span><h3>' + esc(S.goal) + '</h3></div><div class="jarrow">' + jar(false) + '<div class="jartext"><div class="big">' + inr(S.putIn) + '</div><span class="hand" aria-hidden="true">first one in</span></div></div><div class="bar"><b style="width:' + pct() + '%"></b></div>' +
+    '<p>' + inr(amt) + ' is in ' + opt().n + '. Starting is the hard part, and you have done it.</p></div>' +
+    (opt().risk >= 4 ? '<p class="small muted">A heads-up: this is a high-risk option. Its value can fall a long way, and may not come back.</p>' : opt().risk > 1 ? '<p class="small muted">A heads-up: this option moves with prices, so in some weeks it will be worth less than you put in. That is normal. We will explain it when it happens.</p>' : '') +
+    '<div class="card line"><h3>What did I just buy?</h3><p class="muted">A 30-second explainer with one question.</p><button class="btn alt" data-act="lesson" data-v="l1">Show me</button></div>' +
+    '<div class="spacer"></div><button class="btn" data-act="home">Go to my goal</button>';
+}
+function vHome(){
+  const v = value(), diff = v - S.putIn, dip = S.inDip && !S.stopped, o = opt();
+  let h = '';
+  if (S.toast) h += '<div class="card ' + S.toast.kind + '" role="status"><h3>' + S.toast.h + '</h3><p>' + gloss(S.toast.p) + '</p></div>';
+  if (S.recovered && !S.inDip) h += '<div class="card calm"><h3>Back above the fall</h3><p>Remember the fall ' + plural(S.recovered, 'week') + ' ago? Prices are now above where they were before it. This time it passed. Another fall will come at some point.</p><button class="link" data-act="dismissRec">Got it</button></div>';
+
+  const drop = !!S.jarDrop; S.jarDrop = false;
+  h += '<div class="hero jarhero"><div class="kv"><span class="who"><span class="gicon" aria-hidden="true">' + S.icon + '</span><h3>' + esc(S.goal) + '</h3></span><span class="tag">' + (S.rhythm === 'auto' ? 'Automatic' : 'Flexible') + '</span></div>' +
+    '<div class="jarrow">' + jar(drop) + '<div class="jartext"><div class="big">' + inr(S.putIn) + '</div><span class="small">saved of ' + inr(S.target) + '</span>' + (S.putIn > 0 ? '<span class="hand" aria-hidden="true">filling up</span>' : '') + '</div></div>' +
+    '<div class="bar"><b style="width:' + pct() + '%"></b></div>' +
+    (S.stopped || S.paused ? '' : '<p class="small">' + standing() + '</p>') +
+    '<button class="link" data-act="go" data-v="edit">Change goal or plan</button></div>';
+
+  if (dip){
+    h += '<div class="card dip"><h3>' + (S.weekChange < 0 ? 'Prices fell. Here is what that means' : 'Prices are still below their recent high') + '</h3>' +
+      '<p>' + (S.weekChange < 0 ? 'Your money is down ' + inr(-S.weekChange) + ' since last week. ' : '') + 'At the recent high it was worth ' + inr(S.units * S.peak) + '. Today it is worth ' + inr(v) + '. You own the same ' + term('pieces', 'pieces') + ' as before.</p>' +
+      (o.risk >= 4 ? '<p>With ' + o.n.toLowerCase() + ', a fall can be large and the money may not come back. This is the risk you were shown when you chose it.</p><button class="btn alt" data-act="explore" data-v="home">Move to a steadier option</button>'
+        : '<p>Falls like this have happened many times. Nobody knows how long this one will last.</p><p>' + inr(S.plan) + ' added this week buys what cost ' + inr(S.plan * S.peak / price()) + ' at the recent high.</p>' +
+          (o.risk === 3 ? '<button class="btn alt" data-act="pastOpen">Has this happened before? See 100 past starts</button>' : '') +
+          '<button class="link" data-act="lesson" data-v="dip">What is happening? (30 seconds)</button>') +
+      '<button class="link" data-act="go" data-v="stop">See your options: keep going, pause or stop</button></div>';
+  }
+
+  let quick = true;
+  if (S.stopped){
+    h += '<div class="card line"><h3>You have stopped adding money</h3><p>Your ' + inr(v) + ' stays invested and its value will keep changing. You can take it out on any day.</p><button class="btn" data-act="restart">Restart my plan</button><button class="btn alt" data-act="go" data-v="out">Take money out</button></div>';
+    quick = false;
+  } else if (S.pauseEnded){
+    h += '<div class="card line"><h3>Your pause has ended</h3><p>Ready to pick ' + esc(S.goal) + ' back up? Nothing was lost while you were away.</p><button class="btn" data-act="restart">Restart my plan</button><button class="btn alt" data-act="pauseMore">Pause one more month</button></div>';
+    quick = false;
+  } else if (S.paused){
+    h += '<div class="card line"><h3>Paused until ' + dateAt(S.pausedUntil) + '</h3><p>No money will be taken or asked for. Your ' + inr(v) + ' stays invested.</p><button class="btn alt" data-act="restart">Restart now</button></div>';
+  } else if (S.rhythm === 'flex' && S.pending){
+    h += '<div class="card line"><h3>Did money come in this week?</h3><p class="muted">Your plan is about ' + inr(S.plan) + ' a week. Any amount from ₹100 counts.</p><button class="btn" data-act="go" data-v="add">I got paid: add money</button><button class="btn alt" data-act="skip">Not this week</button></div>';
+  } else if (S.rhythm === 'auto' && S.stepUp){
+    h += '<div class="card calm"><h3>Has your pay gone up?</h3><p>Raising your monthly amount by ₹500 would get you to ' + esc(S.goal) + ' sooner. Only if it is comfortable.</p><button class="btn" data-act="stepUp">Raise to ' + inr(S.plan + 500) + ' a month</button><button class="btn alt" data-act="stepNo">Not now</button></div>';
+  }
+
+  if (S.adjustOffer && S.rhythm === 'flex' && !S.paused && !S.stopped){
+    h += '<div class="card calm"><h3>A few quiet weeks. That happens</h3><p>Everything you saved is still here. If ' + inr(S.plan) + ' a week feels like too much right now, a lighter plan keeps you going. Your goal stays the same and only the date moves.</p><button class="btn" data-act="lighter">Make it ' + inr(lighterAmt()) + ' a week</button><button class="btn alt" data-act="keepPlan">Keep my plan</button></div>';
+  }
+
+  if (quick) h += '<div class="stats"><button class="btn' + (S.rhythm === 'flex' && S.pending ? ' alt' : '') + '" data-act="go" data-v="add">Add money</button><button class="btn alt" data-act="go" data-v="out">Take money out</button></div>';
+
+  h += '<div class="stats"><div class="stat-t"><span class="small muted">You have put in</span><b>' + inr(S.putIn) + '</b></div>' +
+    '<div class="stat-t"><span class="small muted">' + term('worth', 'It is worth') + '</span><b>' + inr(v) + '</b><span class="small muted">' + (Math.abs(diff) < 1 ? 'Level with what you put in' : inr(Math.abs(diff)) + (diff > 0 ? ' more' : ' less') + ' than you put in') + '</span></div></div>';
+
+  if (!S.stopped && !S.paused){
+    if (S.rhythm === 'flex'){
+      const q = S.noIncome + S.missed;
+      h += '<div class="card line"><p><span class="badge">Money added ' + plural(S.contribs.length, 'time') + ' so far</span></p><p class="small muted">' + (q > 0 ? plural(q, 'quiet week') + '. Those do not count against you, and nothing resets.' : 'Add when money arrives. A quiet week never resets anything.') + '</p></div>';
+    } else {
+      const wk = 4 - (S.week % 4);
+      h += '<div class="card line"><h3>Next: ' + inr(S.plan) + ' in ' + plural(wk, 'week') + '</h3><p class="muted">It goes in by itself the day after your salary lands' + (S.salaryDay === 30 ? '' : ' (you are paid on day ' + S.salaryDay + ')') + '.</p><p><span class="badge">' + plural(S.debits + 1, 'payment') + ' made</span></p>' + (S.pausedMonths > 0 ? '<p class="small muted">' + plural(S.pausedMonths, 'month') + ' paused. A pause is not a miss.</p>' : '') + (S.stepUp ? '' : '<button class="link" data-act="askRaise">Got a raise? Change my monthly amount</button>') + '</div>';
+    }
+  }
+
+  if (S.checkin && !S.stopped){
+    const l = nextLesson();
+    h += '<div class="card pop"><div class="step">This week\'s check-in</div>' + (l
+      ? '<h3>' + getLesson(l.id).title + '</h3><p class="muted">30 seconds, one question.</p><button class="btn alt" data-act="lesson" data-v="' + l.id + '">Open</button>'
+      : (() => { const wk = S.contribs.filter(c => c.w === S.week).reduce((s, c) => s + c.amt, 0), nm = nextMs();
+          return '<h3>This week for ' + esc(S.goal) + '</h3><p>' + (wk > 0 ? inr(wk) + ' added this week. ' : 'Nothing added this week, and that is fine. ') + pctText() + ' saved so far.' + (nm ? ' Next: ' + nm[1] + ', ' + inr(nm[0] - S.putIn) + ' to go.' : '') + '</p><button class="btn alt" data-act="checkinDone">Got it</button>'; })()) + '</div>';
+  }
+
+  h += '<div class="card line"><div class="kv"><span>Held in <b>' + o.n + '</b></span><button class="link" data-act="explore" data-v="home">Change</button></div>' +
+    '<div class="inside">' + insideChips(o, 4) + '</div>' +
+    '<button class="link" data-act="go" data-v="trust">Costs and safety</button></div>';
+
+  { const nm = nextMs();
+    h += '<div class="card line"><p class="step">Milestones</p>' + (S.ms.length ? '<div class="ms">' + S.ms.map(m => '<span class="tag">' + m.t + '</span>').join('') + '</div>' : '') +
+      (nm ? '<p class="small">Next: <b>' + nm[1] + '</b>, ' + inr(nm[0] - S.putIn) + ' to go.</p>' : '<p class="small">You have reached every milestone for this goal.</p>') + '</div>'; }
+  if (!S.stopped) h += '<button class="link" data-act="go" data-v="stop">Pause or stop</button>';
+  return h;
+}
+function vAdd(){
+  const set = [100, 250, 500, 1000, S.plan].filter((v, i, a) => a.indexOf(v) === i).sort((a, b) => a - b);
+  return '<button class="back" data-act="home">Back</button><h1>Add to ' + esc(S.goal) + '</h1><p class="muted">Any amount from ₹100.</p>' +
+    '<div class="chips">' + set.map(a => '<button class="chip" data-act="payAmt" data-v="' + a + '" aria-pressed="' + (S.payAmt === a) + '">' + inr(a) + '</button>').join('') + '</div>' +
+    '<div class="field"><label for="payCustom">Or type an amount</label><input id="payCustom" type="number" inputmode="numeric" min="100" step="50" value="' + S.payAmt + '"></div>' +
+    (S.err ? '<p class="small" style="color:var(--dip)">' + S.err + '</p>' : '') +
+    '<div class="spacer"></div><p class="note">No real payment is made in this prototype.</p><button class="btn" data-act="addPay">Add money</button>';
+}
+function vRisk(){
+  const o = OPTIONS.find(x => x.id === S.risk);
+  return '<button class="back" data-act="riskNo">Back</button><h1>Before you choose ' + o.n.toLowerCase() + '</h1><p>You can choose this. Read the risks first.</p>' +
+    o.risks.map((r, i) => '<div class="card' + (i === 0 ? ' dip' : '') + '"><p>' + gloss(r) + '</p></div>').join('') +
+    '<div class="card line"><h3>What this means for ' + esc(S.goal) + '</h3><p>Your plan of ' + (S.rhythm === 'auto' ? inr(S.plan) + ' a month' : 'about ' + inr(S.plan) + ' a week') + ' would still go in, but nobody can say what it will be worth on the day you need it. It could be far less than you put in.</p></div>' +
+    '<p class="note">Example figures. Nothing here is a recommendation.</p>' +
+    '<div class="spacer"></div><div class="cta"><button class="btn" data-act="riskNo">Choose something else</button><button class="btn alt" data-act="pracOpen" data-v="' + o.id + '">Try it with practice coins first</button><button class="btn alt" data-act="riskYes">I understand the risks. Use this</button></div>';
+}
+function vMe(){
+  const v = value(), o = opt(), done = LESSONS.filter(l => S.seen[l.id]).length, q = S.noIncome + S.missed;
+  const none = '<span class="tag">Not in this prototype</span>';
+  return '<div class="mehead"><div class="avatar" aria-hidden="true">' + S.icon + '</div><div><h1>' + (S.name ? esc(S.name) : 'You') + '</h1><p class="small muted">Investing since ' + dateAt(0) + '</p>' +
+      (S.nameEdit ? '' : '<button class="link" data-act="nameEdit">' + (S.name ? 'Change name' : 'Add your name') + '</button>') + '</div></div>' +
+    (S.nameEdit ? '<div class="field"><label for="userName">What should we call you?</label><input id="userName" maxlength="20" value="' + esc(S.name) + '" autocomplete="off"></div><button class="btn alt" data-act="saveName">Save name</button>' : '') +
+
+    '<div class="card line"><div class="kv"><h3>' + esc(S.goal) + '</h3><span class="tag">' + (S.rhythm === 'auto' ? 'Automatic' : 'Flexible') + '</span></div>' +
+      '<div class="kv"><span>Saved</span><b>' + pctText() + '</b></div><div class="kv"><span>Held in</span><b>' + o.n + '</b></div>' +
+      '<div class="kv"><span>Plan</span><b>' + (S.rhythm === 'auto' ? inr(S.plan) + ' a month' : 'About ' + inr(S.plan) + ' a week') + '</b></div>' +
+      '<button class="link" data-act="go" data-v="edit">Change goal or plan</button></div>' +
+
+    '<h3>Your numbers so far</h3>' +
+    '<div class="stats"><div class="stat-t"><span class="small muted">You have put in</span><b>' + inr(S.putIn) + '</b></div>' +
+      '<div class="stat-t"><span class="small muted">' + term('worth', 'It is worth') + '</span><b>' + inr(v) + '</b></div>' +
+      '<div class="stat-t"><span class="small muted">' + (S.rhythm === 'auto' ? 'Payments made' : 'Times money added') + '</span><b>' + (S.rhythm === 'auto' ? S.debits + 1 : S.contribs.length) + '</b></div>' +
+      '<div class="stat-t"><span class="small muted">Taken out</span><b>' + inr(S.takenOut) + '</b></div></div>' +
+    (S.rhythm === 'flex' && q > 0 ? '<p class="small muted">' + plural(q, 'quiet week') + '. Those do not count against you.</p>' : '') +
+    (S.rhythm === 'auto' && S.pausedMonths > 0 ? '<p class="small muted">' + plural(S.pausedMonths, 'month') + ' paused. A pause is not a miss.</p>' : '') +
+    (S.ms.length ? '<div class="ms">' + S.ms.map(m => '<span class="tag">' + m.t + '</span>').join('') + '</div>' : '') +
+
+    '<div class="card line"><h3>What you have learned</h3><div class="kv"><span>Lessons done</span><b>' + done + ' of ' + LESSONS.length + '</b></div><div class="bar"><b style="width:' + (done / LESSONS.length * 100) + '%"></b></div>' +
+      '<button class="link" data-act="tab" data-v="learn">Go to lessons</button>' +
+      '<p class="small"><b>Words explained.</b> Tap any one.</p><div class="words">' + Object.keys(TERMS).map(k => term(k, TERMS[k].t)).join('') + '</div></div>' +
+
+    '<div class="card line"><h3>Settings</h3><div class="rowlist">' +
+      '<button data-act="theme">Theme<span class="val">' + (curTheme() === 'dark' ? 'Dark' : 'Light') + '</span></button>' +
+      '<button data-act="remind">Reminders<span class="val">' + (S.remind ? 'On, at most one a week' : 'Off') + '</span></button>' +
+      '<button data-act="go" data-v="edit">How money reaches you<span class="val">' + (S.rhythm === 'auto' ? 'A fixed salary' : 'It varies') + '</span></button></div></div>' +
+
+    '<div class="card line"><h3>Your money and safety</h3><div class="rowlist">' +
+      '<button data-act="go" data-v="trust">Costs and safety<span class="val"></span></button>' +
+      '<button data-act="go" data-v="out">Take money out<span class="val"></span></button>' +
+      '<div>Bank account' + none + '</div></div></div>' +
+
+    '<div class="card line"><h3>Help</h3><div class="rowlist"><div>Talk to a person' + none + '</div><div>How this app makes money' + none + '</div></div></div>';
+}
+function replan(){
+  const left = Math.max(4, S.months * 4 - S.week), rem = remaining();
+  S.plan = S.rhythm === 'auto' ? Math.max(100, Math.ceil(rem / (left / 4) / 100) * 100) : Math.max(100, Math.ceil(rem / left / 10) * 10);
+  S.exp = S.putIn;
+}
+function vEdit(){
+  const E = S.edit, mos = [6, 8, 12, 14, 18, 24, 36, 48, 60];
+  return '<button class="back" data-act="home">Back</button><h1>Change your goal or plan</h1><p class="muted">Everything you have saved stays. Only the plan is worked out again.</p>' +
+    '<div class="field"><label for="goalName2">What is it called?</label><input id="goalName2" maxlength="24" value="' + esc(E.name) + '" autocomplete="off"></div>' +
+    '<div class="field"><label for="targetAmt2">How much does it need?</label><input id="targetAmt2" type="number" inputmode="numeric" min="1000" step="500" value="' + E.target + '"></div>' +
+    '<p style="font-weight:700">How long from the day you started?</p>' +
+    '<div class="chips">' + mos.map(m => '<button class="chip" data-act="editMonths" data-v="' + m + '" aria-pressed="' + (E.months === m) + '">' + moLabel(m) + '</button>').join('') + '</div>' +
+    '<p style="font-weight:700">How does money reach you now?</p>' +
+    '<button class="opt" data-act="editRhythm" data-v="flex" aria-pressed="' + (E.rhythm === 'flex') + '"><span class="e" aria-hidden="true">🌊</span>It varies<span>You add money when it arrives.</span></button>' +
+    '<button class="opt" data-act="editRhythm" data-v="auto" aria-pressed="' + (E.rhythm === 'auto') + '"><span class="e" aria-hidden="true">📅</span>A fixed salary every month<span>It goes in by itself the day after your salary lands.</span></button>' +
+    (S.err ? '<p class="small" style="color:var(--dip)">' + S.err + '</p>' : '') +
+    '<div class="spacer"></div><div class="cta"><button class="btn" data-act="saveGoal">Save changes</button></div>';
+}
+function vStop(){
+  const pausedDate = dateAt(projWeek() + 4);
+  return '<button class="back" data-act="home">Back</button><h1>Your options</h1><p class="muted">All three are free, and all three can be undone.</p>' +
+    (S.inDip ? '<div class="card dip"><p class="small">Prices are lower right now. Pausing or stopping only stops new money going in. What you already have stays invested, so it can still climb back, or fall further.</p></div>' : '') +
+    '<div class="card"><h3>Pause for a month</h3><p class="small">Nothing is taken or asked for until ' + dateAt(S.week + 4) + '. Your goal date moves to around ' + pausedDate + '. We will check in when the month is up.</p><button class="btn" data-act="pause">Pause for a month</button></div>' +
+    '<div class="card"><h3>Keep going</h3><p class="small">Nothing changes. Your plan carries on as it is.</p><button class="btn alt" data-act="home">Keep going</button></div>' +
+    '<div class="card"><h3>Stop</h3><p class="small">' + esc(S.goal) + ' stays at ' + pctText() + '. Your ' + inr(value()) + ' stays invested until you take it out, and you can restart whenever you like.</p><button class="btn alt" data-act="stopPlan">Stop my plan</button></div>' +
+    '<button class="link" data-act="go" data-v="out">I only want to take money out</button>';
+}
+function vLearn(){
+  return '<h1>Learn</h1><p class="muted">Short lessons that show up when they matter. Replay any of them here.</p>' +
+    '<p class="lsec">Watch</p>' + VIDS.map(v => '<button class="opt" data-act="vidOpen" data-v="' + v.id + '">' + v.t + '<span>Animated explainer, about ' + Math.round(v.scenes.length * 3.2) + ' seconds</span></button>').join('') +
+    '<p class="lsec">Play</p>' + GAMES.map(g => '<button class="opt" data-act="gameOpen" data-v="' + g.id + '">' + g.t + '<span>' + g.d + '</span></button>').join('') +
+    '<p class="lsec">Lessons</p>' +
+    LESSONS.map(l => '<button class="opt" data-act="lesson" data-v="' + l.id + '">' + getLesson(l.id).title + '<span>' + (S.seen[l.id] ? 'Done. Tap to replay' : '30 seconds, one question') + '</span></button>').join('') +
+    '<p class="lsec">Try it out</p>' +
+    '<button class="opt" data-act="pracOpen">Practice with coins<span>Replay a past period with practice coins. A preview of a planned feature.</span></button>' +
+    (opt().risk === 3 ? '<button class="opt" data-act="pastOpen">100 past starts<span>See how your plan went from 100 start dates in the past. About a minute.</span></button>' : '');
+}
+function vExplore(){
+  return (S.back ? '<button class="back" data-act="go" data-v="' + S.back + '">Back</button>' : '') + '<h1>Choose where your money goes</h1><p class="muted">Every option is explained the same way. The ones that fit your goal length come first. Pick any one, and change it whenever you like.</p>' +
+    OPTIONS.slice().sort((x, y) => (fits(y) ? 2 : y.goal ? 1 : 0) - (fits(x) ? 2 : x.goal ? 1 : 0)).map(o => '<div class="card' + (o.id === S.option ? ' calm' : '') + '"><div class="kv"><h3>' + o.n + '</h3>' + (o.id === S.option ? '<span class="tag">Your goal uses this</span>' : '') + '</div>' + '<p class="small">' + kindTag(o) + (S.goal && fits(o) ? ' <span class="tag">Fits a goal ' + span() + ' away</span>' : '') + '</p>' +
+      '<p>' + gloss(o.what) + '</p><p class="small"><b>How bumpy:</b> <span class="dots" role="img" aria-label="' + o.risk + ' out of 5">' + [1, 2, 3, 4, 5].map(i => '<i class="' + (i <= o.risk ? 'on' : '') + '"></i>').join('') + '</span> ' + gloss(o.bump) + '</p><p class="small"><b>Suits:</b> ' + o.suits + '</p><p class="small"><b>Risks:</b></p><ul class="risks">' + o.risks.map(r => '<li>' + gloss(r) + '</li>').join('') + '</ul><p class="small"><b>What is inside:</b></p><div class="inside">' + insideChips(o, 10) + '</div><p class="note">' + o.insideNote + '</p>' + (o.id === S.option ? '' : o.risk >= 4 ? '<button class="btn alt" data-act="riskOpen" data-v="' + o.id + '">See the risks before choosing</button>' : '<button class="btn alt" data-act="pick" data-v="' + o.id + '">' + (S.started ? 'Move my goal here' : 'Use this for my goal') + '</button>') + '</div>').join('');
+}
+function getLesson(id){
+  if (id === 'dip') return DIP_LESSON();
+  if (id === 'l1'){
+    const o = opt(), sel = OPTIONS.filter(x => x.sel);
+    return {id:'l1', title:'What you just bought', cards:[
+      {art: o.id === 'index' ? 'basket' : 'line', h:'Your money is in: ' + o.n, p:o.own},
+      {art:'line', h:'How bumpy it is', p:o.bump},
+      {art:'choices', h:'You can change this', p:'Open Explore to read about every option and move your goal to another one.'}],
+      quiz:{q:'Where is your money now?', opts:sel.map(x => x.n), right:sel.findIndex(x => x.id === o.id), why:'It is in: ' + o.n + '. ' + o.what}};
+  }
+  if (id === 'l3' && opt().risk === 1){
+    return {id:'l3', title:'How steady is your money?', cards:[
+      {art:'line', h:'Your option moves very little', p:opt().bump + ' That is why a goal that is close starts here.'},
+      {art:'dip', h:'Other options move more', p:'An index fund follows the market. It can fall for months at a time, which matters when you need the money soon.'},
+      {art:'choices', h:'If you ever switch', p:'A bumpier option can grow more over many years, and it will also fall at some point. Expect that before you move.'}],
+      quiz:{q:'Why does a goal that is close start in a steady option?', opts:['There is little time to wait out a fall', 'Steady options always grow the fastest'], right:0, why:'With little time left, a fall could still be there when you need the money.'}};
+  }
+  if (id === 'l4'){
+    const o = opt();
+    if (o.id === 'fd') return {id:'l4', title:'What this costs you', cards:[
+      {art:'fee', h:'No yearly fee', p:'A fixed deposit has no yearly fee. The bank pays you the rate that was fixed when you started.'},
+      {art:'choices', h:'Taking it out early', p:o.access}],
+      quiz:{q:'What happens if you take a fixed deposit out early?', opts:['Usually a small cut in the interest', 'You lose all of it'], right:0, why:'Taking it out early usually costs a small part of the interest.'}};
+    if (o.fee === 0) return {id:'l4', title:'What this costs you', cards:[
+      {art:'fee', h:'A charge on every trade', p:o.cost + ' (Example figure.)'},
+      {art:'choices', h:'Taking it out', p:o.access}],
+      quiz:{q:'When are you charged?', opts:['Each time I buy or sell', 'Only when I make a gain'], right:0, why:'The charge applies to every order, whether it wins or loses.'}};
+    return {id:'l4', title:'What this costs you', cards:[
+      {art:'fee', h:'One small yearly fee', p:'About ₹' + o.fee + ' a year for every ₹1,000 you hold. It is taken inside the fund, never from your bank. (Example figure.)'},
+      {art:'choices', h:'Nothing to add, pause or take out', p:'There is no charge for adding money, skipping a week, pausing, or taking money out in this plan. (Example.)'}],
+      quiz:{q:'You hold ₹10,000 for a year. Roughly what is the yearly fee?', opts:['About ₹' + o.fee * 10, 'About ₹' + o.fee * 100, 'About ₹1,000'], right:0, why:'₹' + o.fee + ' for every ₹1,000, so about ₹' + o.fee * 10 + ' on ₹10,000.'}};
+  }
+  return LESSONS.find(l => l.id === id);
+}
+function vLesson(){
+  const L = getLesson(S.lesson.id), i = S.lesson.i, n = L.cards.length + (L.quiz ? 1 : 0);
+  let h = '<button class="back" data-act="lessonClose">Close</button><div class="lesson"><div class="pips">';
+  for (let k = 0; k < n; k++) h += '<i class="' + (k <= i ? 'on' : '') + '"></i>';
+  h += '</div><div class="step">' + L.title + '</div>';
+  if (i < L.cards.length){
+    const c = L.cards[i];
+    h += '<div class="lcard">' + art(c.art) + '<h3>' + gloss(c.h) + '</h3><p>' + gloss(c.p) + '</p></div><div class="spacer"></div><button class="btn" data-act="lessonNext">' + (i === n - 1 ? 'Done' : 'Next') + '</button>';
+  } else {
+    const q = L.quiz, a = S.lesson.answer;
+    h += '<div class="lcard"><h3>' + gloss(q.q) + '</h3>' + q.opts.map((o, k) => '<button class="qopt' + (a !== null && k === q.right ? ' right' : '') + (a === k && k !== q.right ? ' chosen' : '') + '" data-act="answer" data-v="' + k + '"' + (a !== null ? ' disabled' : '') + '>' + o + '</button>').join('') +
+      (a !== null ? '<p role="status"><b>' + (a === q.right ? 'That is right.' : 'Close.') + '</b> ' + gloss(q.why) + '</p>' : '') + '</div><div class="spacer"></div>' +
+      (a !== null ? '<p class="small muted">Goal update: ' + pctText() + ' saved for ' + esc(S.goal) + '.</p><button class="btn" data-act="lessonNext">Done</button>' : '');
+  }
+  return h + '</div>';
+}
+
+function notif(){
+  const g = S.goal ? esc(S.goal) : 'goal';
+  if (!S.goal) return 'Nothing yet. Reminders start once there is a goal.';
+  if (!S.remind) return 'Reminders are switched off. You can turn them back on under Me.';
+  if (!S.started) return 'Your ' + g + ' plan is one step from starting.';
+  if (S.stopped) return 'No reminders while the plan is stopped.';
+  if (S.event === 'pauseEnded') return 'Your pause is over. Ready to pick ' + g + ' back up?';
+  if (S.paused) return 'No reminders while the plan is paused.';
+  if (S.event === 'dip') return (S.weekChange < 0 ? 'Prices fell this week. ' : 'Prices are still below their recent high. ') + g + ' is still ' + pctText() + ' saved. Here is what that means.';
+  if (S.event === 'recovered') return 'Prices are back above where they were before the fall.';
+  if (S.event === 'debit') return inr(S.plan) + ' went into ' + g + ' today. That makes ' + pctText() + '.';
+  if (S.event === 'pending') return 'Got paid this week? ' + g + ' is ' + pctText() + ' saved. Add any amount.';
+  if (S.event === 'out') return 'Your money is on its way to your bank. ' + g + ' is still open whenever you are ready.';
+  if (S.event === 'skipped') return 'No rush. ' + g + ' is waiting at ' + pctText() + '.';
+  return g + ' is ' + pctText() + ' saved. Nice start.';
+}
+
+function render(){
+  if (!(S.screen === 'past' && S.past && S.past.step === 4) && !(S.screen === 'prac' && S.prac && S.prac.step === 2)) stopReplay();
+  if (S.screen !== 'vid') stopVid();
+  const views = {hello:vHello, welcome:vWelcome, details:vDetails, rhythm:vRhythm, plan:vPlan, trust:vTrust, pay:vPay, done:vDone, home:vHome, add:vAdd, stop:vStop, learn:vLearn, explore:vExplore, out:vOut, edit:vEdit, past:vPast, risk:vRisk, prac:vPrac, me:vMe, vid:vVid, game:vGame, lesson:vLesson};
+  const app = $('#app');
+  app.innerHTML = views[S.screen]();
+  if (app.dataset) app.dataset.screen = S.screen;
+  if (S.lastScreen !== S.screen || S.toast) app.scrollTop = 0;
+  S.lastScreen = S.screen;
+  const tabs = $('#tabs'), showTabs = S.started && ['home', 'learn', 'explore', 'me'].indexOf(S.screen) >= 0 && !S.back;
+  tabs.hidden = !showTabs;
+  if (showTabs) tabs.innerHTML = [['home', 'My goal'], ['learn', 'Learn'], ['explore', 'Explore'], ['me', 'Me']].map(t => '<button data-act="tab" data-v="' + t[0] + '"' + (S.screen === t[0] ? ' aria-current="page"' : '') + '>' + t[1] + '</button>').join('');
+  const T = S.sheet ? TERMS[S.sheet] : null;
+  $('#sheet').innerHTML = T ? '<div class="sheetwrap" data-act="closeSheet"><div class="sheet" role="dialog" aria-label="' + T.t + '"><h3>' + T.t + '</h3><p>' + T.d + '</p><p class="eg small">' + T.eg + '</p><button class="btn alt" data-act="closeSheet">Got it</button></div></div>' : '';
+  $('#btnWeek').disabled = !S.started; $('#btnDip').disabled = !S.started || S.queue.length > 0 || S.inDip;
+  $('#status').textContent = S.started ? 'Week ' + S.week + ' · ' + dateAt(S.week) + ' · prices ' + (S.week === 0 ? 'unchanged' : (S.weekChange >= 0 ? 'up' : 'down') + ' this week') + (S.queue.length ? ' · a fall is under way' : '') : 'Not started yet. Go through the sign-up in the phone, or jump to any screen above.';
+  $('#notif').innerHTML = notif();
+  $('#jumps').innerHTML = JUMPS.map(j => j.length === 1 ? '<span class="grp">' + j[0] + '</span>' : '<button class="chip" data-act="jump" data-v="' + j[0] + '" aria-pressed="' + (JUMP === j[0]) + '">' + j[1] + '</button>').join('');
+  const dark = curTheme() === 'dark', tg = $('#tgl');
+  tg.innerHTML = dark ? ICON_SUN : ICON_MOON;
+  if (tg.setAttribute) tg.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+}
+
+/* ---------- 100 past starts: the user's own plan run from 100 start dates (example data) ---------- */
+let PASTC = null, RPT = null;
+function rng(seed){ let a = seed >>> 0; return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+const monthlyAmt = () => S.rhythm === 'auto' ? S.plan : S.plan * 4;
+function runStart(k, M, amt, skipFrom, skipN){
+  const r = rng(k * 7919 + M * 101 + 17); let p = 1, high = 1, units = 0, put = 0, maxDrop = 0; const P = [], V = [];
+  for (let m = 0; m < M; m++){
+    const z = (r() + r() + r() + r() - 2) * 1.73; let ret = 0.0115 + 0.04 * z; if (r() < 0.01) ret -= 0.05 + r() * 0.08;
+    if (!(skipFrom !== undefined && m > skipFrom && m <= skipFrom + skipN)){ units += amt / p; put += amt; }
+    p *= 1 + ret; if (p > high) high = p; maxDrop = Math.max(maxDrop, 1 - p / high);
+    P.push(put); V.push(units * p);
+  }
+  return {P, V, maxDrop};
+}
+function pastData(){
+  const M = S.months, amt = monthlyAmt(), key = M + '|' + amt;
+  if (PASTC && PASTC.key === key) return PASTC;
+  const starts = [];
+  for (let k = 0; k < 100; k++){
+    const x = runStart(k, M, amt); let t = 1, low = 9;
+    for (let m = 1; m < M; m++){ const q = x.V[m] / x.P[m]; if (q < low){ low = q; t = m; } }
+    starts.push({k, end:x.V[M - 1] / x.P[M - 1], maxDrop:x.maxDrop, t, low, put:x.P[M - 1], val:x.V[M - 1]});
+  }
+  return PASTC = {key, starts};
+}
+const pastDrop = () => S.inDip ? Math.max(0.05, below() / 100) : 0.1;
+const pastCat = s => s.end < 0.98 ? 'behind' : s.end <= 1.02 ? 'level' : 'ahead';
+function pastView(){
+  const D = pastData(), d = pastDrop(), ord = {behind:0, level:1, ahead:2};
+  const fell = D.starts.filter(s => s.maxDrop >= d).sort((x, y) => ord[pastCat(x)] - ord[pastCat(y)] || x.end - y.end);
+  const not = D.starts.filter(s => s.maxDrop < d).sort((x, y) => x.end - y.end);
+  const cnt = c => fell.filter(s => pastCat(s) === c).length;
+  return {d, fell, not, all:fell.concat(not), n:{behind:cnt('behind'), level:cnt('level'), ahead:cnt('ahead')}};
+}
+const PAST_WARN = '<p class="warnline">This is the past. The future can be worse than anything shown here.</p><p class="note">Example data made for this prototype. It is not real market history.</p>';
+function stopReplay(){ if (RPT){ clearInterval(RPT); RPT = null; } }
+function rpTick(){
+  const rp = S.past && S.past.rp; if (!rp || rp.paused || rp.done) return;
+  rp.i++;
+  if (rp.hasFall && rp.choice === null && rp.i >= rp.t){ rp.i = rp.t; rp.paused = true; stopReplay(); }
+  else if (rp.i >= rp.M - 1){ rp.i = rp.M - 1; rp.done = true; S.past.step = 5; stopReplay(); }
+}
+function runReplay(){
+  stopReplay();
+  if (typeof window === 'undefined') return;
+  let still = false; try { still = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+  if (still){ const rp = S.past.rp; let g = 0; while (!rp.paused && !rp.done && g++ < 999) rpTick(); return; }
+  RPT = setInterval(() => { rpTick(); render(); }, Math.max(70, Math.round(6000 / S.months)));
+}
+function startReplay(k){
+  const M = S.months, x = runStart(k, M, monthlyAmt()), s = pastData().starts[k];
+  S.past.step = 4;
+  S.past.rp = {k, M, P:x.P, V:x.V, t:s.t, hasFall:s.low < 0.97, i:0, paused:false, choice:null, done:false};
+}
+function rpChart(rp){
+  const W = 300, H = 130, pad = 8, top = Math.max.apply(null, rp.P.concat(rp.V)) * 1.05;
+  const X = m => pad + (W - 2 * pad) * (rp.M === 1 ? 0 : m / (rp.M - 1)), Y = v => H - pad - (H - 2 * pad) * (v / top);
+  const pts = arr => arr.slice(0, rp.i + 1).map((v, m) => X(m).toFixed(1) + ',' + Y(v).toFixed(1)).join(' ');
+  return '<svg class="rpchart" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Two lines month by month: what you have put in, and what it is worth">' +
+    '<line x1="' + pad + '" y1="' + (H - pad) + '" x2="' + (W - pad) + '" y2="' + (H - pad) + '" style="stroke:var(--line);stroke-width:1"></line>' +
+    '<polyline points="' + pts(rp.P) + '" style="fill:none;stroke:var(--c-in);stroke-width:2;stroke-dasharray:5 4;stroke-linejoin:round"></polyline>' +
+    '<polyline points="' + pts(rp.V) + '" style="fill:none;stroke:var(--c-worth);stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round"></polyline>' +
+    '<circle cx="' + X(rp.i).toFixed(1) + '" cy="' + Y(rp.P[rp.i]).toFixed(1) + '" r="4.5" style="fill:var(--c-in);stroke:var(--surface);stroke-width:2"></circle>' +
+    '<circle cx="' + X(rp.i).toFixed(1) + '" cy="' + Y(rp.V[rp.i]).toFixed(1) + '" r="4.5" style="fill:var(--c-worth);stroke:var(--surface);stroke-width:2"></circle></svg>';
+}
+function pastDots(v, mode){
+  return '<div class="dotgrid">' + v.all.map((s, i) => {
+    const fell = s.maxDrop >= v.d, cls = !fell ? '' : mode === 'fell' ? 'fell' : pastCat(s);
+    const label = 'Start ' + (i + 1) + ': ' + (fell ? 'fell this much at some point' : 'never fell this much') + ', ended with ' + inr(s.val) + ' from ' + inr(s.put) + ' put in';
+    return mode === 'pick' ? '<button class="pd ' + cls + '" data-act="pastPick" data-v="' + s.k + '" aria-label="' + label + '" title="' + label + '"></button>' : '<span class="pd ' + cls + '" title="' + label + '"></span>';
+  }).join('') + '</div>';
+}
+function vPast(){
+  const P = S.past, v = pastView(), nf = v.fell.length, per = inr(Math.round(v.d * 1000));
+  const head = '<button class="back" data-act="pastBack">Back</button><div class="steps" role="img" aria-label="Step ' + Math.min(P.step, 4) + ' of 4">' + [1, 2, 3, 4].map(i => '<i class="' + (i <= Math.min(P.step, 4) ? 'on' : '') + '"></i>').join('') + '</div>';
+  if (P.step === 1){
+    return head + '<h1>Has this happened before?</h1><p>We ran your exact plan, ' + (S.rhythm === 'auto' ? inr(S.plan) + ' a month' : 'about ' + inr(S.plan) + ' a week') + ' for ' + span() + ', from 100 different start dates in the past.</p>' +
+      '<div class="card line">' + pastDots(v, 'fell') +
+      '<div class="legend"><div><span class="sw" style="background:var(--c-worth);border-color:var(--c-worth)"></span>Fell this much at some point<b>' + nf + '</b></div><div><span class="sw"></span>Never fell this much<b>' + (100 - nf) + '</b></div></div></div>' +
+      '<p><b>In ' + nf + ' of 100 starts,</b> prices dropped by ' + per + ' or more in every ₹1,000 at some point, as they have for you now.</p>' +
+      PAST_WARN + '<div class="spacer"></div><div class="cta"><button class="btn" data-act="pastNext">' + (nf ? 'How did those ' + nf + ' end?' : 'Watch one play out') + '</button></div>';
+  }
+  if (P.step === 2){
+    const worst = v.fell[0], mid = v.fell[Math.floor(nf / 2)];
+    return head + '<h1>How those ' + nf + ' ended</h1><p class="muted">The worst one first.</p>' +
+      (worst ? '<div class="card dip"><h3>The worst of them</h3><p>' + inr(worst.put) + ' put in ended at ' + inr(worst.val) + '. That is ' + inr(Math.abs(worst.put - worst.val)) + (worst.val < worst.put ? ' less' : ' more') + ' than went in.</p></div>' +
+        '<div class="card"><h3>A typical one</h3><p>' + inr(mid.put) + ' put in ended at ' + inr(mid.val) + '.</p></div>' : '') +
+      '<div class="card line">' + pastDots(v, 'end') +
+      '<div class="legend"><div><span class="sw" style="background:var(--c-behind);border-color:var(--c-behind)"></span>Ended with less than was put in<b>' + v.n.behind + '</b></div>' +
+      '<div><span class="sw" style="background:var(--c-level);border-color:var(--c-level)"></span>Ended about level<b>' + v.n.level + '</b></div>' +
+      '<div><span class="sw" style="background:var(--c-ahead);border-color:var(--c-ahead)"></span>Ended with more<b>' + v.n.ahead + '</b></div>' +
+      '<div><span class="sw"></span>Never fell this much<b>' + (100 - nf) + '</b></div></div>' +
+      '<p class="note">About level means within ₹2 of every ₹100 put in.</p></div>' +
+      PAST_WARN + '<div class="spacer"></div><div class="cta"><button class="btn" data-act="pastNext">Watch one play out</button></div>';
+  }
+  if (P.step === 3){
+    return head + '<h1>Pick a start to watch</h1><p>Tap any dot to see that start play out month by month. The colours are the same as before.</p>' +
+      '<div class="card line">' + pastDots(v, 'pick') + '</div>' + PAST_WARN +
+      '<div class="spacer"></div><div class="cta"><button class="btn" data-act="pastSurprise">Surprise me</button></div>';
+  }
+  const rp = P.rp, place = v.all.findIndex(s => s.k === rp.k) + 1;
+  if (P.step === 4){
+    const put = rp.P[rp.i], val = rp.V[rp.i];
+    return head + '<div class="step">Start ' + place + ' of 100 · month ' + (rp.i + 1) + ' of ' + rp.M + '</div>' +
+      '<div class="card line"><div class="legend"><div><span class="sw dash"></span>You have put in<b>' + inr(put) + '</b></div><div><span class="sw solid"></span>It is worth<b>' + inr(val) + '</b></div></div>' + rpChart(rp) + '</div>' +
+      (rp.paused ? '<div class="card dip"><h3>What would you do here?</h3><p>You have put in ' + inr(put) + ' and it is worth ' + inr(val) + '. That is ' + inr(put - val) + ' less. This is the lowest point of this start.</p>' +
+        '<div class="pick3"><button class="btn" data-act="pastChoose" data-v="keep">Keep going</button><button class="btn alt" data-act="pastChoose" data-v="pause">Pause for 3 months</button><button class="btn alt" data-act="pastChoose" data-v="stop">Stop and take it out</button></div></div>'
+        : '<p class="muted">' + (rp.choice ? 'Playing the rest of this start.' : 'Playing. It will stop at the lowest point, if there is one.') + '</p><button class="link" data-act="pastSkip">Skip ahead</button>') +
+      PAST_WARN;
+  }
+  const M = rp.M, keep = {put:rp.P[M - 1], val:rp.V[M - 1]}, x2 = runStart(rp.k, M, monthlyAmt(), rp.t, 3), pause = {put:x2.P[M - 1], val:x2.V[M - 1]}, stop = {put:rp.P[rp.t], val:rp.V[rp.t]};
+  const better = pastData().starts.filter(s => s.end < keep.val / keep.put).length;
+  const row = (id, title, o, verb) => '<div class="card' + (rp.choice === id ? ' calm' : '') + '"><div class="kv"><h3>' + title + '</h3>' + (rp.choice === id ? '<span class="tag">You chose this</span>' : '') + '</div>' +
+    '<div class="kv"><span>Put in</span><b>' + inr(o.put) + '</b></div><div class="kv"><span>' + verb + '</span><b>' + inr(o.val) + '</b></div></div>';
+  return head + '<h1>How this start ended</h1>' +
+    (rp.hasFall ? '<p class="muted">All three choices, side by side. None of them is marked right or wrong.</p>' + row('keep', 'Keep going', keep, 'Ended at') + row('pause', 'Pause for 3 months', pause, 'Ended at') + row('stop', 'Stop and take it out', stop, 'Took out')
+      : '<p>This start never dropped far below what was put in, so there was no hard moment to decide.</p>' + row('keep', 'The whole period', keep, 'Ended at')) +
+    '<p>If you kept going, this start ended better than <b>' + better + ' of the 100</b>.</p>' + PAST_WARN +
+    '<div class="spacer"></div><div class="cta"><button class="btn" data-act="pastAgain">Try another start</button><button class="btn alt" data-act="home">Back to my goal</button></div>';
+}
+
+/* ---------- practice with coins: a preview of a planned feature (example data) ---------- */
+const PRAC_COINS = 5000;
+const PRAC_PERIODS = [
+  {id:'calm', n:'A calm year', d:'Prices drift up with small wobbles.', m:[1.2, 0.8, 1.5, -0.6, 1.1, 0.9, 1.4, -0.4, 1, 1.3, 0.7, 1.1]},
+  {id:'sharp', n:'A year with a sharp fall', d:'A sudden drop, then a climb back.', m:[1.5, 1, -6, -14, -11, 4, 7, 6, 5, 4, 3, 3]},
+  {id:'slow', n:'A slow fall', d:'Prices slide for months and do not fully come back.', m:[-1, -3, -2, -4, -3, -5, -2, -1, 1, 2, 1, 2]}
+];
+const coins = v => Math.round(v).toLocaleString('en-IN') + ' coins';
+function pracPath(periodId, optId){
+  const mv = PRAC_PERIODS.find(p => p.id === periodId).m, P = [PRAC_COINS], V = [PRAC_COINS]; let v = PRAC_COINS;
+  mv.forEach((m, i) => {
+    const r = optId === 'index' ? m : optId === 'parking' ? 0.5 : optId === 'fd' ? 0.55 : optId === 'gold' ? 0.4 - 0.3 * m : optId === 'shares' ? 1.8 * m + [2, -3, 1, -2, 3, -1][i % 6] : [-22, 18, -30, -15, 12, -35, 9, -20, -25, 14, -18, -28][i] + m;
+    v = Math.max(0, v * (1 + r / 100)); P.push(PRAC_COINS); V.push(v);
+  });
+  return {P, V};
+}
+function pracTick(){
+  const rp = S.prac && S.prac.rp; if (!rp || rp.paused || rp.done) return;
+  rp.i++;
+  if (rp.hasFall && rp.choice === null && rp.i >= rp.t){ rp.i = rp.t; rp.paused = true; stopReplay(); }
+  else if (rp.i >= rp.M - 1){ rp.i = rp.M - 1; rp.done = true; S.prac.step = 3; stopReplay(); }
+}
+function pracRun(){
+  stopReplay();
+  if (typeof window === 'undefined') return;
+  let still = false; try { still = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+  if (still){ const rp = S.prac.rp; let g = 0; while (!rp.paused && !rp.done && g++ < 99) pracTick(); return; }
+  RPT = setInterval(() => { pracTick(); render(); }, 420);
+}
+const PRAC_NOTE = '<p class="warnline">This is the past. The future can be worse than anything shown here.</p><p class="note">Example data made for this prototype. It is not real market history. Coins are not money: they cannot be bought, won or cashed out.</p>';
+function vPrac(){
+  const Q = S.prac, o = OPTIONS.find(x => x.id === Q.opt), per = PRAC_PERIODS.find(p => p.id === Q.period);
+  const head = '<button class="back" data-act="pracBack">Back</button>';
+  if (Q.step === 1){
+    return head + '<span class="tag">Preview of a planned feature</span><h1>Practice with coins</h1><p>Replay a past period with practice coins and see how each option behaves, before any real money is involved.</p>' +
+      '<div class="card pop"><div class="kv"><h3>Your practice wallet</h3><b>' + coins(10000) + '</b></div><p class="small">This replay uses ' + coins(PRAC_COINS) + '.</p></div>' +
+      '<h3>1. Pick a past period</h3>' + PRAC_PERIODS.map(p => '<button class="opt" data-act="pracPeriod" data-v="' + p.id + '" aria-pressed="' + (Q.period === p.id) + '">' + p.n + '<span>' + p.d + '</span></button>').join('') +
+      '<h3>2. Where do the coins go?</h3><div class="chips">' + OPTIONS.map(x => '<button class="chip" data-act="pracOpt" data-v="' + x.id + '" aria-pressed="' + (Q.opt === x.id) + '">' + x.n + '</button>').join('') + '</div>' +
+      '<p class="small muted"><b>Main risk:</b> ' + o.main + '</p>' + PRAC_NOTE +
+      '<div class="spacer"></div><div class="cta"><button class="btn" data-act="pracPlay">Play the replay</button></div>';
+  }
+  const rp = Q.rp, now = rp.V[rp.i];
+  if (Q.step === 2){
+    return head + '<div class="step">' + per.n + ' · ' + o.n + ' · month ' + rp.i + ' of 12</div>' +
+      '<div class="card line"><div class="legend"><div><span class="sw dash"></span>Coins put in<b>' + coins(PRAC_COINS) + '</b></div><div><span class="sw solid"></span>Worth now<b>' + coins(now) + '</b></div></div>' + rpChart(rp) + '</div>' +
+      (rp.paused ? '<div class="card dip"><h3>What would you do here?</h3><p>Your ' + coins(PRAC_COINS) + ' are worth ' + coins(now) + '. This is the lowest point of this replay.</p><div class="pick3"><button class="btn" data-act="pracChoose" data-v="keep">Keep going</button><button class="btn alt" data-act="pracChoose" data-v="out">Take the coins out</button></div></div>'
+        : '<p class="muted">Playing month by month.</p><button class="link" data-act="pracSkip">Skip ahead</button>') + PRAC_NOTE;
+  }
+  const end = rp.V[rp.M - 1], low = rp.V[rp.t], took = rp.choice === 'out', diff = end - PRAC_COINS;
+  const lesson = o.id === 'fno' ? 'Most of the coins were gone within months. With real money, that loss would have been real.'
+    : o.id === 'shares' ? 'One company moved much more than the wider market, in both directions.'
+    : o.risk === 1 ? 'It barely moved, whatever prices were doing elsewhere. Steady, and slow.'
+    : Q.period === 'calm' ? 'A calm year is the easy case. Try a year with a fall to see the harder one.'
+    : Q.period === 'sharp' ? 'A sharp fall, then a climb back. Not every fall ends this way.'
+    : 'Some falls are slow and do not fully come back within a year.';
+  return head + '<span class="tag">Preview of a planned feature</span><h1>How the replay ended</h1>' +
+    '<div class="card' + (took ? '' : ' calm') + '"><div class="kv"><h3>Kept going</h3>' + (took || !rp.hasFall ? '' : '<span class="tag">You chose this</span>') + '</div><div class="kv"><span>Coins put in</span><b>' + coins(PRAC_COINS) + '</b></div><div class="kv"><span>Ended at</span><b>' + coins(end) + '</b></div></div>' +
+    (rp.hasFall ? '<div class="card' + (took ? ' calm' : '') + '"><div class="kv"><h3>Took the coins out at the low</h3>' + (took ? '<span class="tag">You chose this</span>' : '') + '</div><div class="kv"><span>Coins put in</span><b>' + coins(PRAC_COINS) + '</b></div><div class="kv"><span>Took out</span><b>' + coins(low) + '</b></div></div>' : '') +
+    '<div class="card line"><h3>What this showed</h3><p>' + lesson + '</p><p class="small muted">Had these been rupees, ' + inr(PRAC_COINS) + ' would have ended at ' + inr(end) + (Math.abs(diff) < 1 ? '.' : ', ' + inr(Math.abs(diff)) + (diff > 0 ? ' more' : ' less') + ' than went in.') + ' Losing coins costs nothing. Losing rupees does.</p></div>' + PRAC_NOTE +
+    '<div class="spacer"></div><div class="cta"><button class="btn" data-act="pracAgain">Try another replay</button><button class="btn alt" data-act="pracBack">Done</button></div>';
+}
+
+/* ---------- watch: animated explainers; play: two quick games ---------- */
+const VIDS = [
+  {id:'jar', t:'How a goal fills up', scenes:[
+    {jar:[0, 0], c:'Every goal starts as an empty jar.'},
+    {jar:[0.16, 0], c:'A little goes in when money arrives.'},
+    {jar:[0.42, 0.16], c:'Some weeks nothing goes in. The jar keeps what it has.'},
+    {jar:[0.78, 0.42], c:'Small amounts, added often, do most of the work.'},
+    {jar:[1, 0.78], c:'One day it is full. That is the whole idea.'}]},
+  {id:'fall', t:'What a fall looks like', scenes:[
+    {art:'line', c:'Prices move a little every day.'},
+    {art:'dip', c:'Sometimes they fall, and what you hold is worth less for a while.'},
+    {art:'bars', c:'While prices are lower, the same rupees buy more.'},
+    {art:'choices', c:'You can keep going, pause or stop. Nobody knows how long a fall will last.'}]}
+];
+const GAMES = [
+  {id:'bumpy', t:'Steady or bumpy?', d:'Six options. Does each one barely move, or move a lot?', a:['Barely moves', 'Moves a lot'], rounds:[
+    {q:'Parking fund', r:0, why:'It lends money for very short periods, so its value hardly changes.'},
+    {q:'Shares of one company', r:1, why:'One company can rise or fall sharply on a single piece of news.'},
+    {q:'Fixed deposit', r:0, why:'The rate is fixed on day one, so it does not move at all.'},
+    {q:'Index fund', r:1, why:'It follows share prices, so it rises and falls with them.'},
+    {q:'Futures and options', r:1, why:'These are short-term bets. They move the most, and most people lose.'},
+    {q:'Gold fund', r:1, why:'It follows the gold price, which can rise or fall for years.'}]},
+  {id:'words', t:'Which word is it?', d:'Five meanings. Pick the word that fits each one.', rounds:[
+    {q:'What it costs to run a fund, taken a little each day.', a:['Yearly fee', 'Index fund', 'Pieces'], r:0, why:'A yearly fee is the cost of running the fund.'},
+    {q:'A basket of the biggest companies, with no favourites picked.', a:['Fixed deposit', 'Index fund', 'Parking fund'], r:1, why:'An index fund holds them all.'},
+    {q:'What you would get if you took everything out today.', a:['What you put in', 'Yearly fee', 'What it is worth'], r:2, why:'What it is worth changes with prices. What you put in does not.'},
+    {q:'What you buy when you add money to a fund: small shares of it.', a:['Pieces', 'Coins', 'Deposits'], r:0, why:'Each time you add money you buy more pieces.'},
+    {q:'A place for money you need soon, that barely moves.', a:['Shares of one company', 'Gold fund', 'Parking fund'], r:2, why:'A parking fund is built for money needed soon.'}]}
+];
+let VIDT = null;
+function stopVid(){ if (VIDT){ clearInterval(VIDT); VIDT = null; } }
+function vidTick(){ const V = S.vid; if (!V || !V.playing) return; const n = VIDS.find(x => x.id === V.id).scenes.length; if (V.i >= n - 1){ V.playing = false; V.ended = true; stopVid(); } else V.i++; }
+function vidRun(){ stopVid(); if (typeof window === 'undefined') return; VIDT = setInterval(() => { vidTick(); render(); }, 3200); }
+function vVid(){
+  const V = S.vid, vid = VIDS.find(x => x.id === V.id), sc = vid.scenes[V.i];
+  return '<button class="back" data-act="vidClose">Back</button><span class="tag">Animated explainer</span><h1>' + vid.t + '</h1>' +
+    '<div class="vbar" role="img" aria-label="Scene ' + (V.i + 1) + ' of ' + vid.scenes.length + '">' + vid.scenes.map((x, k) => '<i class="' + (k <= V.i ? 'on' : '') + '"></i>').join('') + '</div>' +
+    '<div class="vstage">' + (sc.jar ? jar(false, sc.jar[0], sc.jar[1]) : art(sc.art)) + '<p class="vcap">' + sc.c + '</p></div>' +
+    '<div class="spacer"></div><div class="g2"><button class="btn" data-act="' + (V.ended ? 'vidReplay' : 'vidToggle') + '">' + (V.ended ? 'Watch again' : V.playing ? 'Pause' : 'Play') + '</button><button class="btn alt" data-act="vidNext"' + (V.i >= vid.scenes.length - 1 ? ' disabled' : '') + '>Next scene</button></div>';
+}
+function vGame(){
+  const G = S.game, g = GAMES.find(x => x.id === G.id), total = g.rounds.length;
+  const head = '<button class="back" data-act="gameClose">Back</button><span class="tag">Quick game</span>';
+  if (G.i >= total){
+    return head + '<h1>' + g.t + '</h1><div class="gcard yes">' + G.score + ' of ' + total + '<small>' + (G.score === total ? 'Every one right.' : G.score >= total - 2 ? 'Nearly all of them.' : 'A good start. The answers stick better the second time.') + '</small></div>' +
+      '<p class="muted">No points, no prizes. This is only for getting the hang of it.</p><div class="spacer"></div><button class="btn" data-act="gameAgain">Play again</button><button class="btn alt" data-act="gameClose">Back to Learn</button>';
+  }
+  const r = g.rounds[G.i], ans = r.a || g.a, done = G.picked !== null, right = G.picked === r.r;
+  return head + '<div class="step">' + g.t + ' · ' + (G.i + 1) + ' of ' + total + '</div>' +
+    '<div class="gcard' + (done ? (right ? ' yes' : ' no') : '') + '">' + r.q + (done ? '<small>' + (right ? 'Yes. ' : 'Not quite. It is "' + ans[r.r] + '". ') + gloss(r.why) + '</small>' : '') + '</div>' +
+    '<div class="pick3">' + ans.map((x, k) => '<button class="btn' + (done && k === r.r ? '' : ' alt') + '" data-act="gamePick" data-v="' + k + '"' + (done ? ' disabled' : '') + '>' + x + '</button>').join('') + '</div>' +
+    '<div class="spacer"></div>' + (done ? '<button class="btn" data-act="gameNext">' + (G.i === total - 1 ? 'See how I did' : 'Next') + '</button>' : '<p class="small muted">Score so far: ' + G.score + '</p>');
+}
+
+/* ---------- jump straight to any screen (demo only) ---------- */
+function setupPlan(){ S = fresh(); ACT.goal('trip'); S.rhythm = 'flex'; ACT.toPlan(); }
+function fallFor(p){ ACT.persona(p); advanceWeek(); advanceWeek(); ACT.dip(); advanceWeek(); advanceWeek(); advanceWeek(); S.toast = null; }
+const JUMPS = [
+  ['Before the first investment'],
+  ['hello', 'Welcome', () => { S = fresh(); }],
+  ['welcome', 'Pick a goal', () => { S = fresh(); S.screen = 'welcome'; }],
+  ['details', 'Amount and date', () => { S = fresh(); ACT.goal('trip'); }],
+  ['rhythm', 'How money reaches you', () => { S = fresh(); ACT.goal('trip'); S.screen = 'rhythm'; }],
+  ['plan', 'Plan and options', () => { setupPlan(); }],
+  ['risk', 'Risk screen for F&O', () => { setupPlan(); ACT.explore('plan'); ACT.riskOpen('fno'); }],
+  ['compare', 'Compare every option', () => { setupPlan(); ACT.explore('plan'); }],
+  ['trust', 'What happens to your money', () => { setupPlan(); S.screen = 'trust'; }],
+  ['pay', 'First payment', () => { setupPlan(); S.screen = 'pay'; }],
+  ['out', 'Take money out', () => { ACT.persona('arjun'); for (let i = 0; i < 6; i++) advanceWeek(); S.toast = null; ACT.go('out'); }],
+  ['done', 'First investment made', () => { setupPlan(); contribute(100, 'first'); S.toast = null; S.started = true; S.event = 'first'; S.screen = 'done'; }],
+  ['The first few weeks'],
+  ['home', 'Home on day one', () => { ACT.persona('riya'); }],
+  ['lesson', '30-second lesson', () => { ACT.persona('riya'); ACT.lesson('l1'); }],
+  ['asked', 'Did money come in?', () => { ACT.persona('riya'); advanceWeek(); }],
+  ['add', 'Add money', () => { ACT.persona('riya'); advanceWeek(); ACT.go('add'); }],
+  ['quiet', 'After a few quiet weeks', () => { ACT.persona('riya'); for (let i = 0; i < 4; i++) advanceWeek(); S.toast = null; }],
+  ['edit', 'Change goal or plan', () => { ACT.persona('riya'); advanceWeek(); ACT.skip(); S.toast = null; ACT.go('edit'); }],
+  ['recap', 'Weekly recap', () => { ACT.persona('arjun'); LESSONS.forEach(l => { S.seen[l.id] = true; }); for (let i = 0; i < 8; i++) advanceWeek(); S.toast = null; }],
+  ['skipped', 'A skipped week', () => { ACT.persona('riya'); advanceWeek(); ACT.skip(); }],
+  ['auto', 'Salaried: automatic payment', () => { ACT.persona('arjun'); for (let i = 0; i < 4; i++) advanceWeek(); S.toast = {kind:'calm', h:inr(S.plan) + ' went in today', p:'It went in by itself the day after your salary landed. ' + esc(S.goal) + ' is now ' + pctText() + ' saved.'}; }],
+  ['raise', 'Salaried: raise prompt', () => { ACT.persona('arjun'); for (let i = 0; i < 12; i++) advanceWeek(); S.toast = null; }],
+  ['term', 'Tap to explain a word', () => { ACT.persona('riya'); S.sheet = 'worth'; }],
+  ['prac', 'Practice with coins (preview)', () => { ACT.persona('riya'); S.screen = 'learn'; ACT.pracOpen(); }],
+  ['pracend', 'Practice replay, ended', () => { ACT.persona('riya'); S.screen = 'learn'; ACT.pracOpen('fno'); ACT.pracPlay(); stopReplay(); ACT.pracSkip(); if (S.prac.rp.paused){ S.prac.rp.choice = 'keep'; S.prac.rp.paused = false; } ACT.pracSkip(); }],
+  ['me', 'Profile', () => { ACT.persona('arjun'); for (let i = 0; i < 9; i++) advanceWeek(); S.toast = null; S.screen = 'me'; }],
+  ['vid', 'Animated explainer', () => { ACT.persona('riya'); S.vid = {id:'jar', i:3, playing:false, ended:false}; S.screen = 'vid'; }],
+  ['game', 'Quick game', () => { ACT.persona('riya'); ACT.gameOpen('bumpy'); ACT.gamePick(0); }],
+  ['learn', 'All lessons', () => { ACT.persona('riya'); S.screen = 'learn'; }],
+  ['When prices fall'],
+  ['fall', 'Home during a fall', () => { fallFor('arjun'); }],
+  ['falllesson', 'Lesson during a fall', () => { fallFor('arjun'); ACT.lesson('dip'); }],
+  ['past', '100 past starts', () => { fallFor('arjun'); ACT.pastOpen(); }],
+  ['pastend', 'A past start, played out', () => { fallFor('arjun'); ACT.pastOpen(); const s = pastView().fell[0]; startReplay(s.k); let g = 0; const rp = S.past.rp; while (!rp.paused && !rp.done && g++ < 999) rpTick(); if (rp.paused){ rp.choice = 'pause'; rp.paused = false; } g = 0; while (!rp.done && g++ < 999) rpTick(); }],
+  ['stop', 'Pause or stop', () => { fallFor('arjun'); ACT.go('stop'); }],
+  ['paused', 'Paused', () => { fallFor('arjun'); ACT.pause(); }],
+  ['pauseover', 'Pause has ended', () => { fallFor('arjun'); ACT.pause(); for (let i = 0; i < 4; i++) advanceWeek(); S.toast = null; }],
+  ['recovered', 'After prices recover', () => { fallFor('arjun'); for (let i = 0; i < 7; i++) advanceWeek(); S.toast = null; }],
+  ['stopped', 'Plan stopped', () => { fallFor('arjun'); ACT.stopPlan(); }],
+  ['steady', 'Same fall, steady option', () => { fallFor('riya'); }]
+];
+let JUMP = 'hello';
+function readAmt(){ const el = $('#payCustom'); const v = el ? parseInt(el.value, 10) : S.payAmt; return isNaN(v) ? 0 : v; }
+
+const ACT = {
+  goal(v){ const g = GOALS.find(x => x.id === v); S.icon = g.e; S.goal = g.name; S.target = g.target; S.months = g.months; S.err = null; S.screen = 'details'; },
+  custom(){ S.custom = true; S.err = null; },
+  goalCustom(){ const n = $('#goalName').value.trim(); if (!n){ S.custom = true; S.screen = 'welcome'; S.err = 'Type a name for your goal, or pick one above.'; return; } S.goal = n; S.icon = '⭐'; S.err = null; S.screen = 'details'; },
+  amt(v){ S.target = +v; },
+  months(v){ const el = $('#targetAmt'); if (el && +el.value > 0) S.target = +el.value; S.months = +v; },
+  toRhythm(){ const v = parseInt($('#targetAmt').value, 10); if (isNaN(v) || v < 1000){ S.err = 'Enter an amount of ₹1,000 or more.'; return; } S.target = v; S.err = null; S.screen = 'rhythm'; },
+  rhythm(v){ S.rhythm = v; },
+  toPlan(){ if (!S.rhythm) return; computePlan(); if (!S.picked) S.option = defaultOption(); S.screen = 'plan'; },
+  go(v){ S.err = null; if (v === 'edit') S.edit = {name:S.goal, target:S.target, months:S.months, rhythm:S.rhythm}; if (v === 'out') S.outAmt = Math.min(500, Math.floor(value())); if (v === 'add') S.payAmt = S.rhythm === 'auto' ? 500 : S.plan; if (v !== 'explore') S.back = null; S.screen = v; },
+  explore(v){ S.back = v; S.screen = 'explore'; },
+  riskOpen(v){ S.risk = v; S.screen = 'risk'; },
+  riskNo(){ S.screen = 'explore'; },
+  riskYes(){ ACT.pick(S.risk); },
+  pick(v){
+    if (!S.started){ S.option = v; S.picked = true; S.screen = S.back || 'plan'; S.back = null; return; }
+    const val = value(); S.option = v; S.units = val / price(); S.peak = price(); S.inDip = false; S.recovered = null; S.back = null; S.screen = 'home';
+    S.toast = {kind:'calm', h:'Moved to: ' + opt().n, p:'Your ' + inr(val) + ' and everything you add from now on goes here. In real life, moving money can carry a small cost or tax.'};
+  },
+  payAmt(v){ S.payAmt = +v; S.err = null; },
+  outAmt(v){ S.outAmt = +v; S.err = null; },
+  editMonths(v){ S.edit.months = +v; },
+  editRhythm(v){ S.edit.rhythm = v; },
+  saveGoal(){
+    const E = S.edit, name = String(E.name).trim();
+    if (!name){ S.err = 'Give your goal a name.'; return; }
+    if (!(E.target >= 1000)){ S.err = 'Enter an amount of ₹1,000 or more.'; return; }
+    const switched = E.rhythm !== S.rhythm;
+    S.goal = name; S.target = E.target; S.months = E.months; S.rhythm = E.rhythm; S.err = null;
+    replan();
+    if (switched){ S.stepUp = false; S.adjustOffer = false; S.pending = S.rhythm === 'flex' && !S.paused && !S.stopped; }
+    S.screen = 'home';
+    S.toast = {kind:'calm', h:'Plan updated', p: remaining() === 0 ? 'You have already saved everything ' + esc(S.goal) + ' needs.' : (S.rhythm === 'auto' ? inr(S.plan) + ' a month' : 'About ' + inr(S.plan) + ' a week') + ' gets you to ' + inr(S.target) + ' for ' + esc(S.goal) + ' around ' + dateAt(projWeek()) + '. Everything you saved is still here.'};
+  },
+  outPay(){
+    const el = $('#outAmt'), typed = el ? parseInt(el.value, 10) : NaN, a = isNaN(typed) ? S.outAmt : typed, v = value();
+    if (!(a >= 1)){ S.err = 'Enter an amount of ₹1 or more.'; return; }
+    if (a > Math.floor(v)){ S.err = 'You can take out up to ' + inr(Math.floor(v)) + '.'; return; }
+    const share = a / v, cut = S.putIn * share;
+    S.units -= S.units * share; S.putIn -= cut; S.exp = Math.max(0, S.exp - cut); S.takenOut += a;
+    if (S.units < 1e-9){ S.units = 0; S.putIn = 0; }
+    S.err = null; S.event = 'out'; S.screen = 'home';
+    S.toast = {kind:'calm', h:inr(a) + ' is on its way', p:'It reaches your bank in ' + opt().days + '. ' + esc(S.goal) + ' now has ' + pctText() + '.' + (S.stopped || S.paused || remaining() === 0 ? '' : ' At your pace you get there around ' + dateAt(projWeek()) + '.')};
+  },
+  pay(){ const a = readAmt(); if (a < 100){ S.err = 'The smallest amount is ₹100.'; return; } S.err = null; contribute(a, 'first'); if (S.rhythm === 'auto') S.exp = S.plan; S.toast = null; S.started = true; S.event = 'first'; S.screen = 'done'; },
+  addPay(){
+    const a = readAmt(); if (a < 100){ S.err = 'The smallest amount is ₹100.'; return; }
+    S.err = null; S.toast = null; S.jarFrom = S.putIn / S.target; S.jarDrop = true; contribute(a, 'manual'); S.quiet = 0; S.adjustOffer = false;
+    if (S.rhythm === 'flex' && S.pending){ S.pending = false; S.asked++; S.added++; S.exp += S.plan; }
+    if (!S.toast) S.toast = {kind:'calm', h:inr(a) + ' added', p: S.inDip ? 'Prices are lower this week. This bought what cost ' + inr(a * S.peak / price()) + ' at the recent high.' : esc(S.goal) + ' is now ' + pctText() + ' saved.'};
+    S.event = 'added'; S.screen = 'home';
+  },
+  skip(){ S.pending = false; S.asked++; S.exp += S.plan; S.noIncome++; S.quiet++; S.event = 'skipped'; S.toast = {kind:'calm', h:'No worries', p:'A skipped week moves your goal date by about a week, to around ' + dateAt(projWeek()) + '. Nothing resets. Add a little extra any time to pull it back.'}; },
+  home(){ S.err = null; S.back = null; S.screen = 'home'; },
+  tab(v){ S.back = null; S.screen = v; },
+  term(v){ S.sheet = v; },
+  closeSheet(){ S.sheet = null; },
+  lesson(v){ S.lesson = {id:v, i:0, answer:null, from: S.screen === 'done' ? 'home' : S.screen}; S.screen = 'lesson'; },
+  lessonNext(){
+    const L = getLesson(S.lesson.id), n = L.cards.length + (L.quiz ? 1 : 0);
+    if (S.lesson.i < n - 1){ S.lesson.i++; return; }
+    S.seen[L.id] = true; if (S.checkin && L.id !== 'dip') S.checkin = false; S.screen = S.lesson.from; S.lesson = null;
+  },
+  lessonClose(){ S.screen = S.lesson.from; S.lesson = null; },
+  answer(v){ S.lesson.answer = +v; },
+  pause(){ S.paused = true; S.pausedUntil = S.week + 4; S.pauseEnded = false; S.pending = false; S.event = 'paused'; S.toast = {kind:'calm', h:'Paused for a month', p:'Nothing will be taken or asked for until ' + dateAt(S.pausedUntil) + '. You can restart sooner from here.'}; S.screen = 'home'; },
+  pauseMore(){ S.pausedUntil = S.week + 4; S.pauseEnded = false; S.event = 'paused'; S.toast = {kind:'calm', h:'Paused for one more month', p:'We will check in again on ' + dateAt(S.pausedUntil) + '.'}; },
+  stopPlan(){ S.stopped = true; S.paused = false; S.pauseEnded = false; S.pending = false; S.event = 'stopped'; S.toast = null; S.screen = 'home'; },
+  restart(){ S.stopped = false; S.paused = false; S.pauseEnded = false; S.pausedUntil = null; S.event = 'added'; if (S.rhythm === 'flex') S.pending = true; S.toast = {kind:'calm', h:'Welcome back', p:esc(S.goal) + ' picks up from ' + pctText() + '. Nothing was lost.'}; },
+  stepUp(){ S.plan += 500; S.stepUp = false; S.stepUpDone = true; S.toast = {kind:'calm', h:'Raised to ' + inr(S.plan) + ' a month', p:'You now reach ' + esc(S.goal) + ' around ' + dateAt(projWeek()) + '.'}; },
+  stepNo(){ S.stepUp = false; S.stepUpDone = true; },
+  lighter(){ S.plan = lighterAmt(); S.exp = S.putIn; S.quiet = 0; S.adjustOffer = false; S.adjustDone = true; S.toast = {kind:'calm', h:'Your plan is now ' + inr(S.plan) + ' a week', p:'At this pace you get to ' + esc(S.goal) + ' around ' + dateAt(projWeek()) + '. You can add more in any week you like.'}; },
+  keepPlan(){ S.adjustOffer = false; S.adjustDone = true; },
+  dismissRec(){ S.recovered = null; },
+  checkinDone(){ S.checkin = false; },
+  vidOpen(v){ S.vid = {id:v, i:0, playing:true, ended:false}; S.screen = 'vid'; vidRun(); },
+  vidToggle(){ S.vid.playing = !S.vid.playing; if (S.vid.playing) vidRun(); else stopVid(); },
+  vidNext(){ const n = VIDS.find(x => x.id === S.vid.id).scenes.length; if (S.vid.i < n - 1) S.vid.i++; if (S.vid.i >= n - 1){ S.vid.playing = false; S.vid.ended = true; stopVid(); } },
+  vidReplay(){ S.vid.i = 0; S.vid.playing = true; S.vid.ended = false; vidRun(); },
+  vidClose(){ stopVid(); S.screen = 'learn'; },
+  gameOpen(v){ S.game = {id:v, i:0, score:0, picked:null}; S.screen = 'game'; },
+  gamePick(v){ const G = S.game; if (G.picked !== null || G.i >= GAMES.find(x => x.id === G.id).rounds.length) return; G.picked = +v; if (G.picked === GAMES.find(x => x.id === G.id).rounds[G.i].r) G.score++; },
+  gameNext(){ if (S.game.picked === null) return; S.game.i++; S.game.picked = null; },
+  gameAgain(){ S.game = {id:S.game.id, i:0, score:0, picked:null}; },
+  gameClose(){ S.screen = 'learn'; },
+  nameEdit(){ S.nameEdit = true; S.nameDraft = S.name; },
+  saveName(){ const el = $('#userName'); S.name = String(el && el.value !== undefined && el.value !== '' ? el.value : S.nameDraft).trim().slice(0, 20); S.nameEdit = false; },
+  remind(){ S.remind = !S.remind; },
+  pracOpen(v){ S.prac = {step:1, period:'sharp', opt:v || 'index', rp:null, from:S.screen === 'risk' ? 'risk' : S.started ? 'learn' : 'explore'}; S.screen = 'prac'; },
+  pracPeriod(v){ S.prac.period = v; },
+  pracOpt(v){ S.prac.opt = v; },
+  pracPlay(){ const x = pracPath(S.prac.period, S.prac.opt); let t = 0; x.V.forEach((v, i) => { if (v < x.V[t]) t = i; }); S.prac.rp = {P:x.P, V:x.V, M:x.V.length, t, hasFall:x.V[t] < PRAC_COINS * 0.93 && t < x.V.length - 1, i:0, paused:false, choice:null, done:false}; S.prac.step = 2; pracRun(); },
+  pracChoose(v){ const rp = S.prac.rp; rp.choice = v; rp.paused = false; pracRun(); },
+  pracSkip(){ stopReplay(); const rp = S.prac.rp; let g = 0; while (!rp.paused && !rp.done && g++ < 99) pracTick(); },
+  pracAgain(){ stopReplay(); S.prac.step = 1; S.prac.rp = null; },
+  pracBack(){ stopReplay(); if (S.prac.step > 1){ S.prac.step = 1; S.prac.rp = null; return; } S.screen = S.prac.from; },
+  pastOpen(){ S.past = {step:1, rp:null}; S.screen = 'past'; },
+  pastNext(){ S.past.step = Math.min(3, S.past.step === 1 && !pastView().fell.length ? 3 : S.past.step + 1); },
+  pastBack(){ stopReplay(); if (S.past.step <= 1){ S.screen = 'home'; return; } S.past.step = S.past.step >= 4 ? 3 : S.past.step - 1; },
+  pastPick(v){ startReplay(+v); runReplay(); },
+  pastSurprise(){ startReplay(Math.floor(Math.random() * 100)); runReplay(); },
+  pastChoose(v){ const rp = S.past.rp; rp.choice = v; rp.paused = false; runReplay(); },
+  pastSkip(){ stopReplay(); const rp = S.past.rp; let g = 0; while (!rp.paused && !rp.done && g++ < 999) rpTick(); },
+  pastAgain(){ stopReplay(); S.past.step = 3; S.past.rp = null; },
+  askRaise(){ S.stepUp = true; },
+  week(){ advanceWeek(); },
+  dip(){ if (!S.started) return; S.queue = [-4.5, -5, -3.5, 0.5, 3, 4, 3.5, 3]; S.toast = {kind:'line', h:'A fall is on its way', p: S.option === 'index' ? 'Demo desk: press Next week to watch prices drop over the next three weeks, then recover.' : 'Demo desk: the market will fall over the next three weeks. Your money is in: ' + opt().n + '. Press Next week and watch how it behaves.'}; if (['lesson', 'add', 'stop'].indexOf(S.screen) < 0) S.screen = 'home'; },
+  reset(){ S = fresh(); JUMP = 'hello'; },
+  jump(v){ const j = JUMPS.find(x => x[0] === v && x[2]); if (!j) return; j[2](); JUMP = v; },
+  theme(){ THEME = curTheme() === 'dark' ? 'light' : 'dark'; try { document.documentElement.dataset.theme = THEME; } catch (e) {} },
+  persona(v){
+    S = fresh();
+    if (v === 'riya'){ S.name = 'Riya'; S.icon = '✈️'; S.goal = 'Goa trip'; S.target = 30000; S.months = 14; S.rhythm = 'flex'; }
+    else { S.name = 'Arjun'; S.icon = '🎓'; S.goal = 'Higher studies'; S.target = 300000; S.months = 60; S.rhythm = 'auto'; S.salaryDay = 1; }
+    computePlan(); S.option = defaultOption(); contribute(v === 'riya' ? 100 : S.plan, 'first'); if (S.rhythm === 'auto') S.exp = S.plan; S.toast = null; S.started = true; S.event = 'first'; S.screen = 'home';
+  }
+};
+
+document.addEventListener('click', e => {
+  const el = e.target.closest('[data-act]');
+  if (!el || el.disabled) return;
+  if (el.dataset.act === 'closeSheet' && e.target.closest('.sheet') && !e.target.closest('button')) return;
+  const fn = ACT[el.dataset.act];
+  if (fn){ if (el.dataset.act !== 'jump' && el.dataset.act !== 'theme' && el.dataset.act !== 'term' && el.dataset.act !== 'closeSheet') JUMP = null; fn(el.dataset.v); render(); }
+});
+document.addEventListener('input', e => {
+  if (e.target.id === 'targetAmt'){ const v = parseInt(e.target.value, 10); if (!isNaN(v)) S.target = v; }
+  if (e.target.id === 'goalName2' && S.edit) S.edit.name = e.target.value;
+  if (e.target.id === 'targetAmt2' && S.edit){ const v = parseInt(e.target.value, 10); S.edit.target = isNaN(v) ? 0 : v; }
+  if (e.target.id === 'userName') S.nameDraft = e.target.value;
+  if (e.target.id === 'outAmt'){ const v = parseInt(e.target.value, 10); if (!isNaN(v)) S.outAmt = v; }
+  if (e.target.id === 'payCustom'){ const v = parseInt(e.target.value, 10); if (!isNaN(v)) S.payAmt = v; }
+});
+document.addEventListener('change', e => { if (e.target.id === 'salaryDay') S.salaryDay = +e.target.value; });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && S.sheet){ S.sheet = null; render(); } });
+render();
+</script>
+
+</body></html>
